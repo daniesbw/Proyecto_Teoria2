@@ -1568,6 +1568,8 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void jTabbedPane2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane2StateChanged
         if (jTabbedPane2.getSelectedIndex() == 1) {
+             DefaultTableModel model = (DefaultTableModel) jTable8.getModel();
+                model.setRowCount(0);
             cargarDevs();
         } else if (jTabbedPane2.getSelectedIndex() == 2) {
             cargarDevs();
@@ -1581,7 +1583,7 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jTabbedPane2StateChanged
 
     private void jTabbedPane2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane2MouseClicked
-        if (!desarrolladores.isEmpty()) {
+        /*if (!desarrolladores.isEmpty()) {
             String[] titulos = {"Código", "Nombre", "Lenguajes de Programación", "Tecnologías"};
             DefaultTableModel modelo = new DefaultTableModel(null, titulos);
             jTable8.setModel(modelo);
@@ -1592,7 +1594,7 @@ public class Interfaz extends javax.swing.JFrame {
                 modelo.addRow(dev);
             }
             jTable8.setModel(modelo);
-        }
+        }*/
 
     }//GEN-LAST:event_jTabbedPane2MouseClicked
 
@@ -1736,6 +1738,8 @@ public class Interfaz extends javax.swing.JFrame {
             System.out.println(result.consume().counters().nodesCreated());
 
             //Ahora, crear la relacion entre el bug insertado y el proyecto seleccionado
+            
+            
         } finally {
             driver.close();
         }
