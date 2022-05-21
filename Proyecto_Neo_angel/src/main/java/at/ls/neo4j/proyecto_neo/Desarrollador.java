@@ -61,8 +61,32 @@ public class Desarrollador {
         this.tecnologias = tecnologias;
     }
 
+    public String getLenguajestoString(){
+        String ret = "[";
+        for (int i = 0; i < this.lenguajes.size(); i++) {
+            if (i!=this.lenguajes.size()-1) {
+                 ret +=lenguajes.get(i)+", ";
+            }else{
+                 ret +=lenguajes.get(i);
+            }
+           
+        }
+        ret += "]";
+        return ret;
+    }
     
-    
-    
+    public String getTecnologiastoString(){
+        String ret = "[";
+        for (int i = 0; i < this.tecnologias.size(); i++) {
+            if (i!=this.tecnologias.size()-1) {
+                 ret +=tecnologias.get(i)+", ";
+            }else{
+                 ret +=tecnologias.get(i);
+            }
+           
+        }
+        ret += "]";
+        return ret;
+    }
     
 }
