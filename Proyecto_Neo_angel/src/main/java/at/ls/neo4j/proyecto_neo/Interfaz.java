@@ -1203,6 +1203,9 @@ public class Interfaz extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton21MouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton21MouseEntered(evt);
+            }
         });
         jButton21.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1225,7 +1228,7 @@ public class Interfaz extends javax.swing.JFrame {
                 {null, null}
             },
             new String [] {
-                "Códidgo Proyecto", "Nombre Proyecto"
+                "Código Proyecto", "Nombre Proyecto"
             }
         ));
         jScrollPane20.setViewportView(jTable15);
@@ -1409,6 +1412,18 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        //Llenar tabla de proyecto que aparece en el menu QA, que tiene código de proyecto y nombre de proyecto
+        try ( Session session = driver.session()) {
+            String[] titulos = {"Código Proyecto", "Nombre Proyecto"};
+            DefaultTableModel modelo = new DefaultTableModel(null, titulos);
+
+            Result result = session.run("Match (p:Proyecto) return p.codigo, p.nombre");
+            result.list().forEach(r -> modelo.addRow(new Object[]{r.get(0).asInt(), r.get(1).asString()}));
+
+            jTable15.setModel(modelo);
+
+        }
+        
         menuQA.pack();
         menuQA.setLocationRelativeTo(this);
         menuQA.setVisible(true);
@@ -1692,8 +1707,17 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton27ActionPerformed
     private int codigoDeBug() {
         //Hacer query que retorne el top desc de los códigos de los bugs que hay en la base de datos, y sumarle 1.
+        int codigoBug=0;
+        try ( Session session = driver.session()) {
+            ArrayList<Integer> x = new ArrayList();
+            
+            Result result = session.run("Match (b:Bug) return count(b)");
 
-        return 0;
+            result.list().forEach(r -> x.add(r.get(0).asInt()));            
+            
+            codigoBug = x.get(0)+1;
+        }
+        return codigoBug;
     }
 
     public void cargarTodosLosBugsReportadosAlaTabla() {
@@ -1730,8 +1754,8 @@ public class Interfaz extends javax.swing.JFrame {
 
             String descripcion = jTextArea3.getText(), estado = "nuevo", fi = "", ff = "";
             int codigo = codigoDeBug();
-            int codigoproyecto = (int) jTable15.getValueAt(jTable15.getSelectedRow(), 0); //se ocupa método
-            int nivelurgencia = (int) jComboBox4.getSelectedItem();
+            int codigoproyecto = (int) jTable15.getValueAt(jTable15.getSelectedRow(), 0); 
+            int nivelurgencia = Integer.parseInt(jComboBox4.getSelectedItem().toString());
 
             Result result = session.run("CREATE (b:Bug{codigo:$codigo, descripcion:$descripcion, codigoproyecto:$codigoproyecto,"
                     + "nivelUrgencia:$nivelUrgencia, estado:$estado, fechaInicio:$fechaInicio, fechaFinalizado:$fechaFinalizado})",
@@ -1741,8 +1765,16 @@ public class Interfaz extends javax.swing.JFrame {
             System.out.println(result.consume().counters().nodesCreated());
 
             //Ahora, crear la relacion entre el bug insertado y el proyecto seleccionado
-        } finally {
-
+            result = session.run("MATCH (p:Proyecto{codigo:$codigo}),(b:Bug{codigo:$codigo1})" +
+                    "CREATE (p)-[:TIENE_UN]->(b)",
+                    parameters("codigo", codigoproyecto, "codigo1", codigo));
+            System.out.println(result.consume().counters().relationshipsCreated());
+            
+            jTextArea3.setText("");
+            jComboBox4.setSelectedIndex(0);
+            jTable15.clearSelection();
+            
+            JOptionPane.showMessageDialog(null, "Se reportó el bug");
         }
     }//GEN-LAST:event_jButton21MouseClicked
 
@@ -1806,6 +1838,10 @@ public class Interfaz extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_jTabbedPane1StateChanged
+
+    private void jButton21MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton21MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton21MouseEntered
 
     ArrayList<Desarrollador> devsSeleccionados = new ArrayList();
 
