@@ -1104,11 +1104,25 @@ public class Interfaz extends javax.swing.JFrame {
                 "Códidgo Proyecto", "Nombre Proyecto"
             }
         ));
+        jTable3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable3MouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(jTable3);
 
         jLabel15.setText("Escoja proyecto");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox3.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox3ItemStateChanged(evt);
+            }
+        });
+        jComboBox3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBox3MouseClicked(evt);
+            }
+        });
 
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
@@ -1120,10 +1134,7 @@ public class Interfaz extends javax.swing.JFrame {
 
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Código Desarrollador", "Nombre Desarrollador"
@@ -1134,6 +1145,11 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel18.setText("Seleccione desarrollador del proyecto");
 
         jButton19.setText("Asignar bug a este desarrollador");
+        jButton19.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton19MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout assignBugToDevLayout = new javax.swing.GroupLayout(assignBugToDev.getContentPane());
         assignBugToDev.getContentPane().setLayout(assignBugToDevLayout);
@@ -1146,13 +1162,13 @@ public class Interfaz extends javax.swing.JFrame {
                     .addComponent(jLabel15))
                 .addGap(29, 29, 29)
                 .addGroup(assignBugToDevLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16)
                     .addGroup(assignBugToDevLayout.createSequentialGroup()
-                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel17)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(assignBugToDevLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton19)
                     .addComponent(jLabel18)
@@ -1455,7 +1471,7 @@ public class Interfaz extends javax.swing.JFrame {
             String[] titulos = {"Código Proyecto", "Nombre Proyecto"};
             DefaultTableModel modelo = new DefaultTableModel(null, titulos);
 
-            Result result = session.run("Match (p:Proyecto) return p.codigo, p.nombre");
+            Result result = session.run("Match (p:Proyecto) return p.codigo, p.nombre order by p.codigo");
             result.list().forEach(r -> modelo.addRow(new Object[]{r.get(0).asInt(), r.get(1).asString()}));
 
             jTable15.setModel(modelo);
@@ -1504,7 +1520,20 @@ public class Interfaz extends javax.swing.JFrame {
         assignBugToDev.setLocationRelativeTo(this);
         assignBugToDev.setVisible(true);
         this.setVisible(false);
+        cargarProyectosEnAssignBugToDev();
     }//GEN-LAST:event_jButton10MouseClicked
+
+    public void cargarProyectosEnAssignBugToDev() {
+        DefaultTableModel model = (DefaultTableModel) jTable3.getModel();
+        model.setRowCount(0);
+        try ( Session session = driver.session()) {
+
+            Result result = session.run("match (p:Proyecto)-[:TIENE_UN]->(:Bug) return distinct p.codigo, p.nombre");
+            result.list().forEach(r -> model.addRow(new Object[]{r.get(0).asInt(), r.get(1).asString()}));
+
+        }
+        jTable3.setModel(model);
+    }
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         menuDevProyectos.pack();
@@ -1933,9 +1962,9 @@ public class Interfaz extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
         model.setRowCount(0);
         try ( Session session = driver.session()) {
-            
+
         }
-        
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -1949,6 +1978,88 @@ public class Interfaz extends javax.swing.JFrame {
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jTable2MouseClicked
+
+    private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
+        if (jTable3.getSelectedRow() >= 0) {
+            DefaultTableModel model = (DefaultTableModel) jTable4.getModel();
+            model.setRowCount(0);
+            //jTextArea2.setText("");
+            try ( Session session = driver.session()) {
+
+                Result result = session.run("match (p:Proyecto)-[:POSEE]-(d:Dev) where p.codigo=" + jTable3.getValueAt(jTable3.getSelectedRow(), 0)
+                        + " return d.codigo,d.nombre order by d.codigo");
+                result.list().forEach(r -> model.addRow(new Object[]{r.get(0).asInt(), r.get(1).asString()}));
+                jTable4.setModel(model);
+
+                jComboBox3.removeAllItems();
+                result = session.run("match (p:Proyecto)-[:TIENE_UN]-(b:Bug) where p.codigo=" + jTable3.getValueAt(jTable3.getSelectedRow(), 0)
+                        + " return b.codigo order by b.codigo");
+                result.list().forEach(r -> jComboBox3.addItem(String.valueOf(r.get(0).asInt())));
+
+            }
+
+        }
+    }//GEN-LAST:event_jTable3MouseClicked
+
+    private void jButton19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton19MouseClicked
+        if (jTable3.getSelectedRow() >= 0 && jComboBox3.getSelectedIndex() >= 0 && jTable4.getSelectedRow() >= 0) {
+
+            try ( Session session = driver.session()) {
+
+                int codigodebug = Integer.parseInt(jComboBox3.getSelectedItem().toString());
+                int codigodev = (int) jTable4.getValueAt(jTable4.getSelectedRow(), 0);
+
+                //Validar que el bug no esté asignado a ningún dev
+                Result result = session.run("MATCH (b:Bug) where b.codigo=" + codigodebug + " return b.estado");
+                ArrayList<String> estado = new ArrayList();
+                result.list().forEach(r -> estado.add(r.get(0).asString()));
+
+                if (estado.get(0).equals("asignado")) {
+                    JOptionPane.showMessageDialog(null, "Ese bug ya está asignado a un desarrollador");
+                } 
+                else {
+                    result = session.run("MATCH (d:Dev{codigo:$codigo}),(b:Bug{codigo:$codigo1})"
+                            + "CREATE (d)-[:REPARA]->(b)",
+                            parameters("codigo", codigodev, "codigo1", codigodebug));
+                    System.out.println(result.consume().counters().relationshipsCreated());
+
+                    //actualizar el estado del bug
+                    result = session.run("MATCH (b:Bug) where b.codigo=" + codigodebug + " set b.estado='asignado'");
+                    //System.out.println(result.consume().counters().systemUpdates());
+                    
+                    JOptionPane.showMessageDialog(null, "Se asignó bug al desarrollador");
+                    jTable3.clearSelection();
+                    jComboBox3.setSelectedIndex(0);
+                    jTextArea2.setText("");
+                    DefaultTableModel model = (DefaultTableModel) jTable4.getModel();
+                    model.setRowCount(0);
+                    jTable4.setModel(model);
+                }
+                //fin validación
+
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Error al asignar bug al desarrollador, debe seleccionar todos los elementos");
+        }
+
+    }//GEN-LAST:event_jButton19MouseClicked
+
+    private void jComboBox3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox3MouseClicked
+
+    }//GEN-LAST:event_jComboBox3MouseClicked
+
+    private void jComboBox3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox3ItemStateChanged
+        if (jComboBox3.getSelectedItem() != null) {
+            jTextArea2.setText("");
+            try ( Session session = driver.session()) {
+
+                Result result = session.run("match (b:Bug) where b.codigo=" + jComboBox3.getSelectedItem() + " return b.descripcion");
+                result.list().forEach(r -> jTextArea2.setText(r.get(0).asString()));
+
+            }
+        }
+    }//GEN-LAST:event_jComboBox3ItemStateChanged
 
     ArrayList<Desarrollador> devsSeleccionados = new ArrayList();
 
