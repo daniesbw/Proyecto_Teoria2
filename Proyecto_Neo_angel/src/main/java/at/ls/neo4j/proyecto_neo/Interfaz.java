@@ -666,7 +666,22 @@ public class Interfaz extends javax.swing.JFrame {
             new String [] {
                 "Código", "Nombre", "Fecha inicio", "Fecha final", "Desarrolladores", "Bugs", "Bugs finalizados"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane18.setViewportView(jTable13);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -1942,25 +1957,25 @@ public class Interfaz extends javax.swing.JFrame {
             try ( Session session = driver.session()) {
 
                 ArrayList<Integer> codigosProyecto = new ArrayList();
-                Result result = session.run("match (p:Proyecto) return p.codigo");
+                Result result = session.run("match (p:Proyecto) return p.codigo order by p.codigo");
                 result.list().forEach(r -> codigosProyecto.add(r.get(0).asInt()));
 
                 for (int i = 0; i < codigosProyecto.size(); i++) {
-                    String devsProyecto = "", bugs1 = "", bugsFinalizados1 = "";
+                   
                     int codigoActual = codigosProyecto.get(i);
                     ArrayList<String> nombresDevs = new ArrayList();
                     result = session.run("match (p:Proyecto{codigo:$codigo })-[:POSEE]->(d:Dev) return d.nombre", parameters("codigo", codigosProyecto.get(i)));
                     result.list().forEach(r -> nombresDevs.add(r.get(0).asString()));
 
                     ArrayList<Integer> bugs = new ArrayList();
-                    result = session.run("match (p:Proyecto{codigo:$codigo})-[:TIENE_UN]->(b:Bug) where b.fechaInicio = \"\" return b.codigo", parameters("codigo", codigosProyecto.get(i)));
+                    result = session.run("match (p:Proyecto{codigo:$codigo})-[:TIENE_UN]->(b:Bug) return b.codigo", parameters("codigo", codigosProyecto.get(i)));
                     result.list().forEach(r -> bugs.add(r.get(0).asInt()));
 
                     ArrayList<Integer> bugsFinalizados = new ArrayList();
-                    result = session.run("match (p:Proyecto{codigo:$codigo})-[:TIENE_UN]->(b:Bug) where not b.fechaInicio = \"\" return b.codigo", parameters("codigo", codigosProyecto.get(i)));
+                    result = session.run("match (p:Proyecto{codigo:$codigo})-[:TIENE_UN]->(b:Bug) where not b.fechaFinalizado = \"\" return b.codigo", parameters("codigo", codigosProyecto.get(i)));
                     result.list().forEach(r -> bugsFinalizados.add(r.get(0).asInt()));
 
-                    result = session.run("match (p:Proyecto{codigo:$codigo}) return p.nombre, p.fechaInicio, p.fechaFinalizado", parameters("codigo", codigosProyecto.get(i)));
+                    result = session.run("match (p:Proyecto{codigo:$codigo1}) return p.nombre, p.fecha_inicio, p.fecha_final", parameters("codigo1", codigosProyecto.get(i)));
                     result.list().forEach(r -> model.addRow(new Object[]{codigoActual, r.get(0).asString(), r.get(1).asString(), r.get(2).asString(), nombresDevs, bugs, bugsFinalizados}));
 
                 }
