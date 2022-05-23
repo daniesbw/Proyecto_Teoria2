@@ -410,6 +410,11 @@ public class Interfaz extends javax.swing.JFrame {
         jButton13.setText("Finalizar Bug");
 
         jButton14.setText("Guardar");
+        jButton14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton14MouseClicked(evt);
+            }
+        });
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -418,7 +423,15 @@ public class Interfaz extends javax.swing.JFrame {
             new String [] {
                 "Código de Proyecto", "Código del bug"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable2MouseClicked(evt);
@@ -699,6 +712,16 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel38.setText("Fecha finalización");
 
         jButton16.setText("MODIFICAR");
+        jButton16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton16MouseClicked(evt);
+            }
+        });
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -1758,6 +1781,15 @@ public class Interfaz extends javax.swing.JFrame {
             result.list().forEach(r -> System.out.println("El nuevo nodo es: " + r.get(0).asNode().values()));
 
             cargarDevs();
+            
+            jTextField5.setText("");
+             DefaultTableModel model = (DefaultTableModel) jTable9.getModel();
+            model.setRowCount(0);
+            
+            model = (DefaultTableModel) jTable10.getModel();
+            model.setRowCount(0);
+            
+            JOptionPane.showMessageDialog(crudDev, "Se modifico el DEV correctamente");
         }
     }//GEN-LAST:event_jButton28ActionPerformed
 
@@ -1885,7 +1917,7 @@ public class Interfaz extends javax.swing.JFrame {
 
             result.list().forEach(r -> codigo.add(r.get(0).asInt()));
 
-            result = session.run("CREATE (p:Proyecto{nombre:$nombre, codigo:$codigo,  fecha_inicio:$fecha_inicio, fecha_final:$fecha_inicio})",
+            result = session.run("CREATE (p:Proyecto{nombre:$nombre, codigo:$codigo,  fecha_inicio:$fecha_inicio, fecha_final:$fecha_final})",
                     parameters("nombre", jTextField9.getText(), "codigo", codigo.get(0) + 1,
                             "fecha_inicio", jTextField10.getText(), "fecha_final", jTextField11.getText()));
 
@@ -1895,7 +1927,11 @@ public class Interfaz extends javax.swing.JFrame {
                         parameters("codigo", codigo.get(0) + 1, "codigo1", d.getCodigo()));
                 System.out.println(result.consume().counters().relationshipsCreated());
             }
-
+            
+            JOptionPane.showMessageDialog(crudProyecto, "Se inserto correctamente");
+            jTextField9.setText("");
+            jTextField10.setText("");
+            jTextField11.setText("");
         }
     }//GEN-LAST:event_jButton15ActionPerformed
 
@@ -1949,7 +1985,7 @@ public class Interfaz extends javax.swing.JFrame {
         model.setRowCount(0);
         try ( Session session = driver.session()) {
 
-            Result result = session.run("match (p:Proyecto)-[:POSEE]->(d:Dev{codigo:$codigo1}) return p.codigo, p.nombre, p.fecha_inicio, p.fecha_final",
+            Result result = session.run("match (p:Proyecto)-[:POSEE]->(d:Dev{codigo:$codigo1}) return  p.codigo, p.nombre, p.fecha_inicio, p.fecha_final order by p.codigo",
                     parameters("codigo1", Integer.parseInt((String) jComboBox2.getSelectedItem())));
             result.list().forEach(r -> model.addRow(new Object[]{r.get(0).asInt(), r.get(1).asString(), r.get(2).asString(), r.get(3).asString()}));
 
@@ -1962,8 +1998,13 @@ public class Interfaz extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
         model.setRowCount(0);
         try ( Session session = driver.session()) {
-
+ 
+            Result result = session.run("match (d:Dev{codigo:$codigo})-[:REPARA]->(b:Bug) return b.codigoproyecto, b.codigo",
+                    parameters("codigo", Integer.parseInt((String) jComboBox2.getSelectedItem())));
+            result.list().forEach(r -> model.addRow(new Object[]{r.get(0).asInt(), r.get(1).asInt()}));
+            
         }
+        jTable2.setModel(model);
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -1976,7 +2017,12 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
-        // TODO add your handling code here:
+        int codigoBug = Integer.parseInt(jTable2.getModel().getValueAt(jTable2.getSelectedRow(), 1).toString());
+        try ( Session session = driver.session()) {
+            Result result = session.run("match (d:Dev{codigo:$codigo})-[:REPARA]->(b:Bug) return b.descripcion",
+                                        parameters("codigo", codigoBug));
+            result.list().forEach(r -> jTextArea1.setText(String.valueOf(r.get(0).asString())));
+        }
     }//GEN-LAST:event_jTable2MouseClicked
 
     private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
@@ -2060,6 +2106,26 @@ public class Interfaz extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jComboBox3ItemStateChanged
+
+    private void jButton14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton14MouseClicked
+         try ( Session session = driver.session()) {
+             Result result = session.run("match (d:Dev{codigo:$codigo})-[:REPARA]->(b:Bug{codigo:$codigo1}) set b.fechaInicio= $fechainicio return b.descripcion",
+                     parameters("codigo",Integer.parseInt((String) jComboBox2.getSelectedItem())
+                             , "codigo1", Integer.parseInt( jTable2.getModel().getValueAt(jTable2.getSelectedRow(), 1).toString()),
+                                "fechainicio", jTextField1.getText()));
+             
+             jTextField1.setText("");
+             JOptionPane.showMessageDialog(menuDevBugs, "Fecha de inicio modificada");
+         }
+    }//GEN-LAST:event_jButton14MouseClicked
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void jButton16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton16MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton16MouseClicked
 
     ArrayList<Desarrollador> devsSeleccionados = new ArrayList();
 
