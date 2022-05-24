@@ -1,6 +1,8 @@
 package at.ls.neo4j.proyecto_neo;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.concurrent.CompletionStage;
 import java.util.stream.Collectors;
 import javax.swing.JOptionPane;
@@ -20,6 +22,7 @@ import org.neo4j.driver.types.TypeSystem;
 public class Interfaz extends javax.swing.JFrame {
 
     ArrayList<Desarrollador> desarrolladores = new ArrayList();
+    private int devcodeGlobal = 0;
 
     Driver driver = GraphDatabase.driver("bolt://localhost:7687",
             AuthTokens.basic("neo4j", "1234"));
@@ -61,8 +64,6 @@ public class Interfaz extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
         jLabel11 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
         jButton13 = new javax.swing.JButton();
         jButton14 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -403,11 +404,12 @@ public class Interfaz extends javax.swing.JFrame {
 
         jLabel11.setText("Fecha de incio de reparación");
 
-        jLabel12.setText("(Fecha finalización de bug)");
-
-        jTextField2.setEditable(false);
-
         jButton13.setText("Finalizar Bug");
+        jButton13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton13MouseClicked(evt);
+            }
+        });
 
         jButton14.setText("Guardar");
         jButton14.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -457,17 +459,10 @@ public class Interfaz extends javax.swing.JFrame {
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
                 .addGroup(menuDevBugsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuDevBugsLayout.createSequentialGroup()
-                        .addGroup(menuDevBugsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10))
-                        .addGap(60, 60, 60))
-                    .addGroup(menuDevBugsLayout.createSequentialGroup()
-                        .addGroup(menuDevBugsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton13)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel12))
-                        .addContainerGap())))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10)
+                    .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(60, 60, 60))
         );
         menuDevBugsLayout.setVerticalGroup(
             menuDevBugsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -485,16 +480,12 @@ public class Interfaz extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(menuDevBugsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(jButton13))
+                    .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(menuDevBugsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(menuDevBugsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton14)
-                    .addComponent(jLabel12))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addComponent(jButton14)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -1796,14 +1787,14 @@ public class Interfaz extends javax.swing.JFrame {
             result.list().forEach(r -> System.out.println("El nuevo nodo es: " + r.get(0).asNode().values()));
 
             cargarDevs();
-            
+
             jTextField5.setText("");
-             DefaultTableModel model = (DefaultTableModel) jTable9.getModel();
+            DefaultTableModel model = (DefaultTableModel) jTable9.getModel();
             model.setRowCount(0);
-            
+
             model = (DefaultTableModel) jTable10.getModel();
             model.setRowCount(0);
-            
+
             JOptionPane.showMessageDialog(crudDev, "Se modifico el DEV correctamente");
         }
     }//GEN-LAST:event_jButton28ActionPerformed
@@ -1942,7 +1933,7 @@ public class Interfaz extends javax.swing.JFrame {
                         parameters("codigo", codigo.get(0) + 1, "codigo1", d.getCodigo()));
                 System.out.println(result.consume().counters().relationshipsCreated());
             }
-            
+
             JOptionPane.showMessageDialog(crudProyecto, "Se inserto correctamente");
             jTextField9.setText("");
             jTextField10.setText("");
@@ -1961,7 +1952,7 @@ public class Interfaz extends javax.swing.JFrame {
                 result.list().forEach(r -> codigosProyecto.add(r.get(0).asInt()));
 
                 for (int i = 0; i < codigosProyecto.size(); i++) {
-                   
+
                     int codigoActual = codigosProyecto.get(i);
                     ArrayList<String> nombresDevs = new ArrayList();
                     result = session.run("match (p:Proyecto{codigo:$codigo })-[:POSEE]->(d:Dev) return d.nombre", parameters("codigo", codigosProyecto.get(i)));
@@ -2013,18 +2004,20 @@ public class Interfaz extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
         model.setRowCount(0);
         try ( Session session = driver.session()) {
- 
+
             Result result = session.run("match (d:Dev{codigo:$codigo})-[:REPARA]->(b:Bug) return b.codigoproyecto, b.codigo",
                     parameters("codigo", Integer.parseInt((String) jComboBox2.getSelectedItem())));
             result.list().forEach(r -> model.addRow(new Object[]{r.get(0).asInt(), r.get(1).asInt()}));
-            
+
+            devcodeGlobal = Integer.parseInt(jComboBox2.getSelectedItem().toString());
+
         }
         jTable2.setModel(model);
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        jComboBox2.removeAll();
+        jComboBox2.removeAllItems();
         try ( Session session = driver.session()) {
             Result result = session.run("match (p:Dev) return p.codigo");
             result.list().forEach(r -> jComboBox2.addItem(String.valueOf(r.get(0).asInt())));
@@ -2033,10 +2026,14 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
         int codigoBug = Integer.parseInt(jTable2.getModel().getValueAt(jTable2.getSelectedRow(), 1).toString());
+        jTextArea1.setText("");
         try ( Session session = driver.session()) {
-            Result result = session.run("match (d:Dev{codigo:$codigo})-[:REPARA]->(b:Bug) return b.descripcion",
+            /*Result result = session.run("match (d:Dev{codigo:$codigo})-[:REPARA]->(b:Bug) return b.descripcion",
                                         parameters("codigo", codigoBug));
-            result.list().forEach(r -> jTextArea1.setText(String.valueOf(r.get(0).asString())));
+            result.list().forEach(r -> jTextArea1.setText(String.valueOf(r.get(0).asString())));*/
+            Result result = session.run("match (b:Bug) where b.codigo=" + codigoBug + " return b.descripcion");
+            result.list().forEach(r -> jTextArea1.setText(r.get(0).asString()));
+
         }
     }//GEN-LAST:event_jTable2MouseClicked
 
@@ -2077,8 +2074,7 @@ public class Interfaz extends javax.swing.JFrame {
 
                 if (estado.get(0).equals("asignado")) {
                     JOptionPane.showMessageDialog(null, "Ese bug ya está asignado a un desarrollador");
-                } 
-                else {
+                } else {
                     result = session.run("MATCH (d:Dev{codigo:$codigo}),(b:Bug{codigo:$codigo1})"
                             + "CREATE (d)-[:REPARA]->(b)",
                             parameters("codigo", codigodev, "codigo1", codigodebug));
@@ -2087,7 +2083,7 @@ public class Interfaz extends javax.swing.JFrame {
                     //actualizar el estado del bug
                     result = session.run("MATCH (b:Bug) where b.codigo=" + codigodebug + " set b.estado='asignado'");
                     //System.out.println(result.consume().counters().systemUpdates());
-                    
+
                     JOptionPane.showMessageDialog(null, "Se asignó bug al desarrollador");
                     jTable3.clearSelection();
                     jComboBox3.setSelectedIndex(0);
@@ -2099,8 +2095,7 @@ public class Interfaz extends javax.swing.JFrame {
                 //fin validación
 
             }
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(null, "Error al asignar bug al desarrollador, debe seleccionar todos los elementos");
         }
 
@@ -2123,15 +2118,17 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox3ItemStateChanged
 
     private void jButton14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton14MouseClicked
-         try ( Session session = driver.session()) {
-             Result result = session.run("match (d:Dev{codigo:$codigo})-[:REPARA]->(b:Bug{codigo:$codigo1}) set b.fechaInicio= $fechainicio return b.descripcion",
-                     parameters("codigo",Integer.parseInt((String) jComboBox2.getSelectedItem())
-                             , "codigo1", Integer.parseInt( jTable2.getModel().getValueAt(jTable2.getSelectedRow(), 1).toString()),
-                                "fechainicio", jTextField1.getText()));
-             
-             jTextField1.setText("");
-             JOptionPane.showMessageDialog(menuDevBugs, "Fecha de inicio modificada");
-         }
+        try ( Session session = driver.session()) {
+            Result result = session.run("match (d:Dev{codigo:$codigo})-[:REPARA]->(b:Bug{codigo:$codigo1}) set b.fechaInicio= $fechainicio return b.descripcion",
+                    parameters("codigo", Integer.parseInt((String) jComboBox2.getSelectedItem()),
+                             "codigo1", Integer.parseInt(jTable2.getModel().getValueAt(jTable2.getSelectedRow(), 1).toString()),
+                            "fechainicio", jTextField1.getText()));
+
+            jTextField1.setText("");
+            JOptionPane.showMessageDialog(menuDevBugs, "Fecha de inicio modificada");
+            jTable2.clearSelection();
+            jTextArea1.setText("");
+        }
     }//GEN-LAST:event_jButton14MouseClicked
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
@@ -2141,6 +2138,35 @@ public class Interfaz extends javax.swing.JFrame {
     private void jButton16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton16MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton16MouseClicked
+
+    private void jButton13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton13MouseClicked
+        //3 Queries
+        //1) Romper la relación
+        //2) Setear la fecha de finalizado como la fecha de hoy
+        //3) Setear estado del bug a 'finalizado'
+
+        if (jTable2.getSelectedRow() >= 0) {
+            try ( Session session = driver.session()) {
+                int codigoBug=Integer.parseInt(jTable2.getValueAt(jTable2.getSelectedRow(), 1).toString());
+                //Romper la relación
+                Result result = session.run("match (d:Dev {codigo:"+devcodeGlobal+"})-[r:REPARA]-(b:Bug {codigo:"+codigoBug+"}) delete r");
+                
+                //Setear estado a finalizado
+                result = session.run("match (b:Bug {codigo:"+codigoBug+"}) set b.estado='finalizado'");
+                
+                //Setear fecha
+                Date myDate = new Date();
+                String t = new SimpleDateFormat("dd-MM-yyyy").format(myDate);
+                result = session.run("match (b:Bug {codigo:"+codigoBug+"}) set b.fechaFinalizado='"+t+"'");
+
+                jTextField1.setText("");
+                JOptionPane.showMessageDialog(menuDevBugs, "Fecha de finalización establecida. Bug reparado");
+                jTable2.clearSelection();
+                jTextArea1.setText("");
+            }
+        }
+
+    }//GEN-LAST:event_jButton13MouseClicked
 
     ArrayList<Desarrollador> devsSeleccionados = new ArrayList();
 
@@ -2219,7 +2245,6 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -2302,7 +2327,6 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField16;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
