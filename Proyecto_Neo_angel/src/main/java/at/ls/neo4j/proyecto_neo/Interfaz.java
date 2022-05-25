@@ -109,6 +109,8 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel38 = new javax.swing.JLabel();
         jTextField16 = new javax.swing.JTextField();
         jButton16 = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
+        jButton17 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         crudDev = new javax.swing.JDialog();
         jTabbedPane2 = new javax.swing.JTabbedPane();
@@ -177,6 +179,17 @@ public class Interfaz extends javax.swing.JFrame {
         jScrollPane8 = new javax.swing.JScrollPane();
         jTable5 = new javax.swing.JTable();
         jLabel22 = new javax.swing.JLabel();
+        aniadirDevs = new javax.swing.JDialog();
+        jComboBox7 = new javax.swing.JComboBox<>();
+        jScrollPane16 = new javax.swing.JScrollPane();
+        jTextPane2 = new javax.swing.JTextPane();
+        jButton18 = new javax.swing.JButton();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel39 = new javax.swing.JLabel();
+        eliminarDevProjecto = new javax.swing.JDialog();
+        jScrollPane17 = new javax.swing.JScrollPane();
+        jTable12 = new javax.swing.JTable();
+        jButton22 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
@@ -757,58 +770,80 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
+        jButton12.setText("AÑADIR DEVS");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
+
+        jButton17.setText("ELIMINAR DEVS");
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(354, 354, 354)
+                .addComponent(jButton16)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel35)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jScrollPane19, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(59, 59, 59)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel36)
-                            .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(40, 40, 40)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel37)
-                                    .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(44, 44, 44)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField16, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-                                    .addComponent(jLabel38, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(jButton16))))
-                .addContainerGap(221, Short.MAX_VALUE))
+                                .addGap(201, 201, 201)
+                                .addComponent(jButton12))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(183, 183, 183)
+                                .addComponent(jButton17)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel36)
+                    .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel37)
+                    .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(75, 75, 75))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel35)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane19, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel37)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel36)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel38)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(127, 127, 127)
-                        .addComponent(jButton16)))
-                .addContainerGap(217, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel35)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane19, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel36)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton12))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel37)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)
+                        .addComponent(jButton17)
+                        .addGap(9, 9, 9)
+                        .addComponent(jLabel38)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
+                .addComponent(jButton16)
+                .addGap(73, 73, 73))
         );
 
         jTabbedPane1.addTab("Modificar", jPanel3);
@@ -1442,6 +1477,116 @@ public class Interfaz extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
+        jComboBox7.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox7ItemStateChanged(evt);
+            }
+        });
+        jComboBox7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBox7MouseClicked(evt);
+            }
+        });
+        jComboBox7.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentMoved(java.awt.event.ComponentEvent evt) {
+                jComboBox7ComponentMoved(evt);
+            }
+        });
+
+        jTextPane2.setEditable(false);
+        jScrollPane16.setViewportView(jTextPane2);
+
+        jButton18.setText("Agregar");
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
+
+        jLabel29.setText("Seleccione Dev");
+
+        jLabel39.setText("Info del dev");
+
+        javax.swing.GroupLayout aniadirDevsLayout = new javax.swing.GroupLayout(aniadirDevs.getContentPane());
+        aniadirDevs.getContentPane().setLayout(aniadirDevsLayout);
+        aniadirDevsLayout.setHorizontalGroup(
+            aniadirDevsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(aniadirDevsLayout.createSequentialGroup()
+                .addGap(176, 176, 176)
+                .addGroup(aniadirDevsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(aniadirDevsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel39)
+                        .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(237, Short.MAX_VALUE))
+        );
+        aniadirDevsLayout.setVerticalGroup(
+            aniadirDevsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(aniadirDevsLayout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(jLabel39)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton18)
+                .addContainerGap(57, Short.MAX_VALUE))
+        );
+
+        jTable12.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Codigo", "Nombre", "Lenguajes", "Tecnologias"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane17.setViewportView(jTable12);
+
+        jButton22.setText("Eliminar");
+        jButton22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton22ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout eliminarDevProjectoLayout = new javax.swing.GroupLayout(eliminarDevProjecto.getContentPane());
+        eliminarDevProjecto.getContentPane().setLayout(eliminarDevProjectoLayout);
+        eliminarDevProjectoLayout.setHorizontalGroup(
+            eliminarDevProjectoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(eliminarDevProjectoLayout.createSequentialGroup()
+                .addGroup(eliminarDevProjectoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(eliminarDevProjectoLayout.createSequentialGroup()
+                        .addGap(109, 109, 109)
+                        .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(eliminarDevProjectoLayout.createSequentialGroup()
+                        .addGap(232, 232, 232)
+                        .addComponent(jButton22, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(120, Short.MAX_VALUE))
+        );
+        eliminarDevProjectoLayout.setVerticalGroup(
+            eliminarDevProjectoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(eliminarDevProjectoLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51)
+                .addComponent(jButton22, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(49, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
@@ -1581,49 +1726,49 @@ public class Interfaz extends javax.swing.JFrame {
         this.setVisible(false);
         estadisticasDeLosBugs();
     }//GEN-LAST:event_jButton9MouseClicked
-    
-    public void estadisticasDeLosBugs(){
+
+    public void estadisticasDeLosBugs() {
         DefaultPieDataset datos = new DefaultPieDataset();
         //Obtener los datos por medio de los 3 queries
         try ( Session session = driver.session()) {
-            
+
             ArrayList<Integer> cantidad = new ArrayList();
             //Bugs nuevos
             Result result = session.run("match (b:Bug) where b.estado='nuevo' return count(b)");
             result.list().forEach(r -> cantidad.add(r.get(0).asInt()));
-            
+
             //Bugs asignados
             result = session.run("match (b:Bug) where b.estado='asignado' return count(b)");
             result.list().forEach(r -> cantidad.add(r.get(0).asInt()));
-            
+
             //Bugs finalizados
             result = session.run("match (b:Bug) where b.estado='finalizado' return count(b)");
             result.list().forEach(r -> cantidad.add(r.get(0).asInt()));
-            
+
             datos.setValue("Bugs Nuevos", cantidad.get(0));
             datos.setValue("Bugs Asignados", cantidad.get(1));
             datos.setValue("Bugs Finalizados", cantidad.get(2));
-            
+
             JFreeChart grafico_circular = ChartFactory.createPieChart(
-                "Estado Actual de los Bugs",
-                datos,
-                true,
-                true,
-                false
+                    "Estado Actual de los Bugs",
+                    datos,
+                    true,
+                    true,
+                    false
             );
-            
+
             ChartPanel panel = new ChartPanel(grafico_circular);
             panel.setMouseWheelEnabled(true);
-            panel.setPreferredSize(new Dimension(544,408));
-            
+            panel.setPreferredSize(new Dimension(544, 408));
+
             jPanel4.setLayout(new BorderLayout());
-            jPanel4.add(panel,BorderLayout.NORTH);
-            
+            jPanel4.add(panel, BorderLayout.NORTH);
+
             pack();
             repaint();
         }
     }
-    
+
     private void jButton10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseClicked
         assignBugToDev.pack();
         assignBugToDev.setLocationRelativeTo(this);
@@ -2054,6 +2199,14 @@ public class Interfaz extends javax.swing.JFrame {
             jTable13.setModel(model);
         } else if (jTabbedPane1.getSelectedIndex() == 2) {
 
+            DefaultTableModel model = (DefaultTableModel) jTable14.getModel();
+            model.setRowCount(0);
+            try ( Session session = driver.session()) {
+                Result result = session.run("match (p:Proyecto) return  p.codigo, p.nombre order by p.codigo");
+                result.list().forEach(r -> model.addRow(new Object[]{r.get(0).asInt(), r.get(1).asString()}));
+            }
+            jTable14.setModel(model);
+
         }
     }//GEN-LAST:event_jTabbedPane1StateChanged
 
@@ -2062,8 +2215,18 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton21MouseEntered
 
     private void jTable14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable14MouseClicked
-        int row = (Integer) (jTable14.getModel().getValueAt(jTable14.getSelectedRow(), 0));
+        int codigo = (Integer) (jTable14.getModel().getValueAt(jTable14.getSelectedRow(), 0));
+        try ( Session session = driver.session()) {
+            proyectos.clear();
+            Result result = session.run("match (p:Proyecto{codigo:" + codigo + "}) return p.nombre, p.fecha_inicio, p.fecha_final ");
+            result.list().forEach(r -> proyectos.add(new Proyecto(r.get(0).asString(), r.get(1).asString(), r.get(2).asString())));
 
+            for (int i = 0; i < proyectos.size(); i++) {
+                jTextField14.setText(proyectos.get(i).getNombre());
+                jTextField15.setText(proyectos.get(i).getFecha_inicio());
+                jTextField16.setText(proyectos.get(i).getFecha_final());
+            }
+        }
     }//GEN-LAST:event_jTable14MouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -2201,7 +2364,7 @@ public class Interfaz extends javax.swing.JFrame {
         try ( Session session = driver.session()) {
             Result result = session.run("match (d:Dev{codigo:$codigo})-[:REPARA]->(b:Bug{codigo:$codigo1}) set b.fechaInicio= $fechainicio return b.descripcion",
                     parameters("codigo", Integer.parseInt((String) jComboBox2.getSelectedItem()),
-                             "codigo1", Integer.parseInt(jTable2.getModel().getValueAt(jTable2.getSelectedRow(), 1).toString()),
+                            "codigo1", Integer.parseInt(jTable2.getModel().getValueAt(jTable2.getSelectedRow(), 1).toString()),
                             "fechainicio", jTextField1.getText()));
 
             jTextField1.setText("");
@@ -2227,17 +2390,17 @@ public class Interfaz extends javax.swing.JFrame {
 
         if (jTable2.getSelectedRow() >= 0) {
             try ( Session session = driver.session()) {
-                int codigoBug=Integer.parseInt(jTable2.getValueAt(jTable2.getSelectedRow(), 1).toString());
+                int codigoBug = Integer.parseInt(jTable2.getValueAt(jTable2.getSelectedRow(), 1).toString());
                 //Romper la relación
-                Result result = session.run("match (d:Dev {codigo:"+devcodeGlobal+"})-[r:REPARA]-(b:Bug {codigo:"+codigoBug+"}) delete r");
-                
+                Result result = session.run("match (d:Dev {codigo:" + devcodeGlobal + "})-[r:REPARA]-(b:Bug {codigo:" + codigoBug + "}) delete r");
+
                 //Setear estado a finalizado
-                result = session.run("match (b:Bug {codigo:"+codigoBug+"}) set b.estado='finalizado'");
-                
+                result = session.run("match (b:Bug {codigo:" + codigoBug + "}) set b.estado='finalizado'");
+
                 //Setear fecha
                 Date myDate = new Date();
                 String t = new SimpleDateFormat("dd-MM-yyyy").format(myDate);
-                result = session.run("match (b:Bug {codigo:"+codigoBug+"}) set b.fechaFinalizado='"+t+"'");
+                result = session.run("match (b:Bug {codigo:" + codigoBug + "}) set b.fechaFinalizado='" + t + "'");
 
                 jTextField1.setText("");
                 JOptionPane.showMessageDialog(menuDevBugs, "Fecha de finalización establecida. Bug reparado");
@@ -2247,6 +2410,119 @@ public class Interfaz extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButton13MouseClicked
+
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+
+        eliminarDevProjecto.pack();
+        eliminarDevProjecto.setLocationRelativeTo(this);
+        eliminarDevProjecto.setVisible(true);
+        crudProyecto.setVisible(false);
+        DefaultTableModel model = (DefaultTableModel) jTable12.getModel();
+            model.setRowCount(0);
+        
+         try ( Session session = driver.session()) {
+             Result result = session.run("match (p:Proyecto{codigo:"+ Integer.parseInt(jTable14.getValueAt(jTable14.getSelectedRow(), 0).toString())+"})-[:POSEE]->(d:Dev) return d.codigo, d.nombre, d.lenguajes, d.tecnologias order by d.codigo");
+        
+             result.list().forEach(r -> model.addRow(new Object[]{r.get(0).asInt(), r.get(1).asString(), r.get(2).asString(), r.get(3).asString()}));
+         
+         }
+        
+        
+    }//GEN-LAST:event_jButton17ActionPerformed
+
+    private void jComboBox7ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox7ItemStateChanged
+        devss.clear();
+        if (jComboBox7.getSelectedItem() != null) {
+            try ( Session session = driver.session()) {
+                Result result = session.run("match (d:Dev{codigo:" + Integer.parseInt((String) jComboBox7.getSelectedItem()) + "}) return d.codigo, d.nombre, d.lenguajes, d.tecnologias");
+                result.list().forEach(r -> devss.add(new Desarrollador(r.get(0).asInt(), r.get(1).asString(), r.get(2).asString(), r.get(3).asString())));
+            }
+
+            for (Desarrollador d : devss) {
+                if (d.getCodigo() == Integer.parseInt((String) jComboBox7.getSelectedItem())) {
+                    jTextPane2.setText("Codigo: " + d.getCodigo() + "\n"
+                            + "Nombre: " + d.getNombre() + "\n"
+                            + "Tecnologias: " + d.getTecnologiastoString() + "\n"
+                            + "Lenguajes: " + d.getLenguajestoString());
+                }
+            }
+        }
+
+    }//GEN-LAST:event_jComboBox7ItemStateChanged
+
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        try ( Session session = driver.session()) {
+            JOptionPane.showMessageDialog(aniadirDevs, (String) jComboBox7.getSelectedItem());
+            Result result = session.run("MATCH (p1:Proyecto{codigo:" + (Integer) (jTable14.getModel().getValueAt(jTable14.getSelectedRow(), 0)) + "}),(d1:Dev{codigo:" + Integer.parseInt((String) jComboBox7.getSelectedItem()) + "})"
+                    + "CREATE (p1)-[:POSEE]->(d1)");
+            System.out.println(result.consume().counters().relationshipsCreated());
+
+            jComboBox7.removeItemAt(jComboBox7.getSelectedIndex());
+
+            jTextPane2.setText("");
+            JOptionPane.showMessageDialog(aniadirDevs, "Se añadio el dev al proyecto");
+        }
+
+
+    }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        aniadirDevs.pack();
+        aniadirDevs.setLocationRelativeTo(this);
+        aniadirDevs.setVisible(true);
+        crudProyecto.setVisible(false);
+        jComboBox7.removeAll();
+        jComboBox7.removeAllItems();
+        try ( Session session = driver.session()) {
+            int codigo = (Integer) (jTable14.getModel().getValueAt(jTable14.getSelectedRow(), 0));
+            Result result = session.run("MATCH (d:Dev)" + "WHERE NONE(n in [" + codigo + "] WHERE (d)<-[:POSEE]-(:Proyecto {codigo:n})) return d.codigo, d.nombre, d.lenguajes, d.tecnologias");
+            result.list().forEach(r -> jComboBox7.addItem(String.valueOf(r.get(0).asInt())));
+
+        }
+
+
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jComboBox7ComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jComboBox7ComponentMoved
+
+    }//GEN-LAST:event_jComboBox7ComponentMoved
+
+    private void jComboBox7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox7MouseClicked
+        if (jComboBox7.getItemCount() == 1) {
+            devss.clear();
+            if (jComboBox7.getSelectedItem() != null) {
+                try ( Session session = driver.session()) {
+                    Result result = session.run("match (d:Dev{codigo:" + Integer.parseInt((String) jComboBox7.getSelectedItem()) + "}) return d.codigo, d.nombre, d.lenguajes, d.tecnologias");
+                    result.list().forEach(r -> devss.add(new Desarrollador(r.get(0).asInt(), r.get(1).asString(), r.get(2).asString(), r.get(3).asString())));
+                }
+
+                for (Desarrollador d : devss) {
+                    if (d.getCodigo() == Integer.parseInt((String) jComboBox7.getSelectedItem())) {
+                        jTextPane2.setText("Codigo: " + d.getCodigo() + "\n"
+                                + "Nombre: " + d.getNombre() + "\n"
+                                + "Tecnologias: " + d.getTecnologiastoString() + "\n"
+                                + "Lenguajes: " + d.getLenguajestoString());
+                    }
+                }
+            }
+        }
+    }//GEN-LAST:event_jComboBox7MouseClicked
+
+    private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
+        if (jTable12.getSelectedRow()!= -1) {
+             try ( Session session = driver.session()) {
+                 Result result = session.run("match (p:Proyecto{codigo:" + (Integer) (jTable14.getModel().getValueAt(jTable14.getSelectedRow(), 0)) 
+                         + "})-[r:POSEE]->(d:Dev{codigo:"+ (Integer)jTable12.getModel().getValueAt(jTable12.getSelectedRow(), 0)+""
+                         + "}) delete r");
+                
+                 ((DefaultTableModel)jTable12.getModel()).removeRow(jTable12.getSelectedRow());
+                 JOptionPane.showMessageDialog(eliminarDevProjecto, "El desarrollador seleccionado ya no esta relacionado con el projecto");
+                 
+             }
+        }else{
+            JOptionPane.showMessageDialog(eliminarDevProjecto, "Tiene que seleccionar un dev para borrar la relacion");
+        }
+    }//GEN-LAST:event_jButton22ActionPerformed
 
     ArrayList<Desarrollador> devsSeleccionados = new ArrayList();
 
@@ -2281,25 +2557,32 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
     }
-
+    ArrayList<Desarrollador> devss = new ArrayList();
+    ArrayList<Proyecto> proyectos = new ArrayList();
     ArrayList<Desarrollador> devs = new ArrayList();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog QAtodosLosBugs;
+    private javax.swing.JDialog aniadirDevs;
     private javax.swing.JDialog assignBugToDev;
     private javax.swing.JDialog crudDev;
     private javax.swing.JDialog crudProyecto;
+    private javax.swing.JDialog eliminarDevProjecto;
     private javax.swing.JDialog estadisticasBugs;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
+    private javax.swing.JButton jButton17;
+    private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
+    private javax.swing.JButton jButton22;
     private javax.swing.JButton jButton23;
     private javax.swing.JButton jButton24;
     private javax.swing.JButton jButton25;
@@ -2321,6 +2604,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JComboBox<String> jComboBox6;
+    private javax.swing.JComboBox<String> jComboBox7;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -2343,6 +2627,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
@@ -2353,6 +2638,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -2373,6 +2659,8 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JScrollPane jScrollPane15;
+    private javax.swing.JScrollPane jScrollPane16;
+    private javax.swing.JScrollPane jScrollPane17;
     private javax.swing.JScrollPane jScrollPane18;
     private javax.swing.JScrollPane jScrollPane19;
     private javax.swing.JScrollPane jScrollPane2;
@@ -2389,6 +2677,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable10;
     private javax.swing.JTable jTable11;
+    private javax.swing.JTable jTable12;
     private javax.swing.JTable jTable13;
     private javax.swing.JTable jTable14;
     private javax.swing.JTable jTable15;
@@ -2417,6 +2706,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JTextPane jTextPane2;
     private javax.swing.JDialog menuAdmin;
     private javax.swing.JDialog menuDev;
     private javax.swing.JDialog menuDevBugs;
