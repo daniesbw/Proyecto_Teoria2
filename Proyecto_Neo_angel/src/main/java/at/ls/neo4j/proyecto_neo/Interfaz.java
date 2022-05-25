@@ -438,6 +438,11 @@ public class Interfaz extends javax.swing.JFrame {
                 jButton14MouseClicked(evt);
             }
         });
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1731,7 +1736,10 @@ public class Interfaz extends javax.swing.JFrame {
         DefaultPieDataset datos = new DefaultPieDataset();
         //Obtener los datos por medio de los 3 queries
         try ( Session session = driver.session()) {
-
+            
+            jPanel4.removeAll();
+            jPanel4.revalidate();
+            
             ArrayList<Integer> cantidad = new ArrayList();
             //Bugs nuevos
             Result result = session.run("match (b:Bug) where b.estado='nuevo' return count(b)");
@@ -2284,7 +2292,7 @@ public class Interfaz extends javax.swing.JFrame {
         if (jTable3.getSelectedRow() >= 0) {
             DefaultTableModel model = (DefaultTableModel) jTable4.getModel();
             model.setRowCount(0);
-            //jTextArea2.setText("");
+            jTextArea2.setText("");
             try ( Session session = driver.session()) {
 
                 Result result = session.run("match (p:Proyecto)-[:POSEE]-(d:Dev) where p.codigo=" + jTable3.getValueAt(jTable3.getSelectedRow(), 0)
@@ -2329,7 +2337,7 @@ public class Interfaz extends javax.swing.JFrame {
 
                     JOptionPane.showMessageDialog(null, "Se asignó bug al desarrollador");
                     jTable3.clearSelection();
-                    jComboBox3.setSelectedIndex(0);
+                    jComboBox3.removeAllItems();
                     jTextArea2.setText("");
                     DefaultTableModel model = (DefaultTableModel) jTable4.getModel();
                     model.setRowCount(0);
@@ -2391,21 +2399,37 @@ public class Interfaz extends javax.swing.JFrame {
         if (jTable2.getSelectedRow() >= 0) {
             try ( Session session = driver.session()) {
                 int codigoBug = Integer.parseInt(jTable2.getValueAt(jTable2.getSelectedRow(), 1).toString());
-                //Romper la relación
-                Result result = session.run("match (d:Dev {codigo:" + devcodeGlobal + "})-[r:REPARA]-(b:Bug {codigo:" + codigoBug + "}) delete r");
+                
+                //Verificar que el bug tenga fecha de inicio si quiere ser finalizado
+                ArrayList<String> fechainicio = new ArrayList();
+                Result result = session.run("match (b:Bug) where b.codigo=" + codigoBug + " return b.fechaInicio");
+                result.list().forEach(r -> fechainicio.add(r.get(0).asString()));
+                if (fechainicio.get(0).equals("")) {
+                    JOptionPane.showMessageDialog(null, "Ese bug aun no tiene fecha de inicio");
+                } 
+                else {
 
-                //Setear estado a finalizado
-                result = session.run("match (b:Bug {codigo:" + codigoBug + "}) set b.estado='finalizado'");
+                    //Romper la relación
+                    result = session.run("match (d:Dev {codigo:" + devcodeGlobal + "})-[r:REPARA]-(b:Bug {codigo:" + codigoBug + "}) delete r");
 
-                //Setear fecha
-                Date myDate = new Date();
-                String t = new SimpleDateFormat("dd-MM-yyyy").format(myDate);
-                result = session.run("match (b:Bug {codigo:" + codigoBug + "}) set b.fechaFinalizado='" + t + "'");
+                    //Setear estado a finalizado
+                    result = session.run("match (b:Bug {codigo:" + codigoBug + "}) set b.estado='finalizado'");
 
-                jTextField1.setText("");
-                JOptionPane.showMessageDialog(menuDevBugs, "Fecha de finalización establecida. Bug reparado");
-                jTable2.clearSelection();
-                jTextArea1.setText("");
+                    //Setear fecha
+                    Date myDate = new Date();
+                    String t = new SimpleDateFormat("dd-MM-yyyy").format(myDate);
+                    result = session.run("match (b:Bug {codigo:" + codigoBug + "}) set b.fechaFinalizado='" + t + "'");
+
+                    jTextField1.setText("");
+                    JOptionPane.showMessageDialog(menuDevBugs, "Fecha de finalización establecida. Bug reparado");
+                    DefaultTableModel modelo = (DefaultTableModel)jTable2.getModel();
+                    modelo.removeRow(jTable2.getSelectedRow());
+                    jTable2.setModel(modelo);
+                    
+                    jTable2.clearSelection();
+                    jTextArea1.setText("");
+                }
+
             }
         }
 
@@ -2418,16 +2442,16 @@ public class Interfaz extends javax.swing.JFrame {
         eliminarDevProjecto.setVisible(true);
         crudProyecto.setVisible(false);
         DefaultTableModel model = (DefaultTableModel) jTable12.getModel();
-            model.setRowCount(0);
-        
-         try ( Session session = driver.session()) {
-             Result result = session.run("match (p:Proyecto{codigo:"+ Integer.parseInt(jTable14.getValueAt(jTable14.getSelectedRow(), 0).toString())+"})-[:POSEE]->(d:Dev) return d.codigo, d.nombre, d.lenguajes, d.tecnologias order by d.codigo");
-        
-             result.list().forEach(r -> model.addRow(new Object[]{r.get(0).asInt(), r.get(1).asString(), r.get(2).asString(), r.get(3).asString()}));
-         
-         }
-        
-        
+        model.setRowCount(0);
+
+        try ( Session session = driver.session()) {
+            Result result = session.run("match (p:Proyecto{codigo:" + Integer.parseInt(jTable14.getValueAt(jTable14.getSelectedRow(), 0).toString()) + "})-[:POSEE]->(d:Dev) return d.codigo, d.nombre, d.lenguajes, d.tecnologias order by d.codigo");
+
+            result.list().forEach(r -> model.addRow(new Object[]{r.get(0).asInt(), r.get(1).asString(), r.get(2).asString(), r.get(3).asString()}));
+
+        }
+
+
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jComboBox7ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox7ItemStateChanged
@@ -2509,20 +2533,24 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox7MouseClicked
 
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
-        if (jTable12.getSelectedRow()!= -1) {
-             try ( Session session = driver.session()) {
-                 Result result = session.run("match (p:Proyecto{codigo:" + (Integer) (jTable14.getModel().getValueAt(jTable14.getSelectedRow(), 0)) 
-                         + "})-[r:POSEE]->(d:Dev{codigo:"+ (Integer)jTable12.getModel().getValueAt(jTable12.getSelectedRow(), 0)+""
-                         + "}) delete r");
-                
-                 ((DefaultTableModel)jTable12.getModel()).removeRow(jTable12.getSelectedRow());
-                 JOptionPane.showMessageDialog(eliminarDevProjecto, "El desarrollador seleccionado ya no esta relacionado con el projecto");
-                 
-             }
-        }else{
+        if (jTable12.getSelectedRow() != -1) {
+            try ( Session session = driver.session()) {
+                Result result = session.run("match (p:Proyecto{codigo:" + (Integer) (jTable14.getModel().getValueAt(jTable14.getSelectedRow(), 0))
+                        + "})-[r:POSEE]->(d:Dev{codigo:" + (Integer) jTable12.getModel().getValueAt(jTable12.getSelectedRow(), 0) + ""
+                        + "}) delete r");
+
+                ((DefaultTableModel) jTable12.getModel()).removeRow(jTable12.getSelectedRow());
+                JOptionPane.showMessageDialog(eliminarDevProjecto, "El desarrollador seleccionado ya no esta relacionado con el projecto");
+
+            }
+        } else {
             JOptionPane.showMessageDialog(eliminarDevProjecto, "Tiene que seleccionar un dev para borrar la relacion");
         }
     }//GEN-LAST:event_jButton22ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton14ActionPerformed
 
     ArrayList<Desarrollador> devsSeleccionados = new ArrayList();
 
