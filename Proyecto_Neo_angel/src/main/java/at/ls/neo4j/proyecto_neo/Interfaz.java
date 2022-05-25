@@ -1,5 +1,7 @@
 package at.ls.neo4j.proyecto_neo;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -7,6 +9,10 @@ import java.util.concurrent.CompletionStage;
 import java.util.stream.Collectors;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.general.DefaultPieDataset;
 import org.neo4j.driver.AuthTokens;
 import org.neo4j.driver.Driver;
 import org.neo4j.driver.GraphDatabase;
@@ -70,6 +76,7 @@ public class Interfaz extends javax.swing.JFrame {
         jTable2 = new javax.swing.JTable();
         estadisticasBugs = new javax.swing.JDialog();
         jLabel6 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
         crudProyecto = new javax.swing.JDialog();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
@@ -151,6 +158,7 @@ public class Interfaz extends javax.swing.JFrame {
         jTable4 = new javax.swing.JTable();
         jLabel18 = new javax.swing.JLabel();
         jButton19 = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
         jInternalFrame1 = new javax.swing.JInternalFrame();
         menuQA = new javax.swing.JDialog();
@@ -491,21 +499,41 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setText("Estadísticas Bugs");
 
+        jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 540, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 404, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout estadisticasBugsLayout = new javax.swing.GroupLayout(estadisticasBugs.getContentPane());
         estadisticasBugs.getContentPane().setLayout(estadisticasBugsLayout);
         estadisticasBugsLayout.setHorizontalGroup(
             estadisticasBugsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(estadisticasBugsLayout.createSequentialGroup()
-                .addGap(185, 185, 185)
-                .addComponent(jLabel6)
-                .addContainerGap(205, Short.MAX_VALUE))
+                .addGroup(estadisticasBugsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(estadisticasBugsLayout.createSequentialGroup()
+                        .addGap(219, 219, 219)
+                        .addComponent(jLabel6))
+                    .addGroup(estadisticasBugsLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         estadisticasBugsLayout.setVerticalGroup(
             estadisticasBugsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(estadisticasBugsLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jLabel6)
-                .addContainerGap(436, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -1180,16 +1208,24 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
+        jLabel12.setText("(ID del bug)");
+
         javax.swing.GroupLayout assignBugToDevLayout = new javax.swing.GroupLayout(assignBugToDev.getContentPane());
         assignBugToDev.getContentPane().setLayout(assignBugToDevLayout);
         assignBugToDevLayout.setHorizontalGroup(
             assignBugToDevLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(assignBugToDevLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
                 .addGroup(assignBugToDevLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15))
-                .addGap(29, 29, 29)
+                    .addGroup(assignBugToDevLayout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addGroup(assignBugToDevLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel15))
+                        .addGap(29, 29, 29))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, assignBugToDevLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(assignBugToDevLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel16)
                     .addGroup(assignBugToDevLayout.createSequentialGroup()
@@ -1227,7 +1263,8 @@ public class Interfaz extends javax.swing.JFrame {
                 .addGroup(assignBugToDevLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel17)
-                    .addComponent(jButton19))
+                    .addComponent(jButton19)
+                    .addComponent(jLabel12))
                 .addContainerGap(122, Short.MAX_VALUE))
         );
 
@@ -1542,8 +1579,51 @@ public class Interfaz extends javax.swing.JFrame {
         estadisticasBugs.setLocationRelativeTo(this);
         estadisticasBugs.setVisible(true);
         this.setVisible(false);
+        estadisticasDeLosBugs();
     }//GEN-LAST:event_jButton9MouseClicked
-
+    
+    public void estadisticasDeLosBugs(){
+        DefaultPieDataset datos = new DefaultPieDataset();
+        //Obtener los datos por medio de los 3 queries
+        try ( Session session = driver.session()) {
+            
+            ArrayList<Integer> cantidad = new ArrayList();
+            //Bugs nuevos
+            Result result = session.run("match (b:Bug) where b.estado='nuevo' return count(b)");
+            result.list().forEach(r -> cantidad.add(r.get(0).asInt()));
+            
+            //Bugs asignados
+            result = session.run("match (b:Bug) where b.estado='asignado' return count(b)");
+            result.list().forEach(r -> cantidad.add(r.get(0).asInt()));
+            
+            //Bugs finalizados
+            result = session.run("match (b:Bug) where b.estado='finalizado' return count(b)");
+            result.list().forEach(r -> cantidad.add(r.get(0).asInt()));
+            
+            datos.setValue("Bugs Nuevos", cantidad.get(0));
+            datos.setValue("Bugs Asignados", cantidad.get(1));
+            datos.setValue("Bugs Finalizados", cantidad.get(2));
+            
+            JFreeChart grafico_circular = ChartFactory.createPieChart(
+                "Estado Actual de los Bugs",
+                datos,
+                true,
+                true,
+                false
+            );
+            
+            ChartPanel panel = new ChartPanel(grafico_circular);
+            panel.setMouseWheelEnabled(true);
+            panel.setPreferredSize(new Dimension(544,408));
+            
+            jPanel4.setLayout(new BorderLayout());
+            jPanel4.add(panel,BorderLayout.NORTH);
+            
+            pack();
+            repaint();
+        }
+    }
+    
     private void jButton10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseClicked
         assignBugToDev.pack();
         assignBugToDev.setLocationRelativeTo(this);
@@ -1557,7 +1637,7 @@ public class Interfaz extends javax.swing.JFrame {
         model.setRowCount(0);
         try ( Session session = driver.session()) {
 
-            Result result = session.run("match (p:Proyecto)-[:TIENE_UN]->(:Bug) return distinct p.codigo, p.nombre");
+            Result result = session.run("match (p:Proyecto)-[:TIENE_UN]->(:Bug) return distinct p.codigo, p.nombre order by p.codigo");
             result.list().forEach(r -> model.addRow(new Object[]{r.get(0).asInt(), r.get(1).asString()}));
 
         }
@@ -2051,7 +2131,7 @@ public class Interfaz extends javax.swing.JFrame {
 
                 jComboBox3.removeAllItems();
                 result = session.run("match (p:Proyecto)-[:TIENE_UN]-(b:Bug) where p.codigo=" + jTable3.getValueAt(jTable3.getSelectedRow(), 0)
-                        + " return b.codigo order by b.codigo");
+                        + " AND b.estado<>'finalizado' return b.codigo order by b.codigo");
                 result.list().forEach(r -> jComboBox3.addItem(String.valueOf(r.get(0).asInt())));
 
             }
@@ -2245,6 +2325,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -2281,6 +2362,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
