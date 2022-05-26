@@ -1894,6 +1894,7 @@ public class Interfaz extends javax.swing.JFrame {
         }
 
         DefaultTableModel model = (DefaultTableModel) jTable8.getModel();
+        model.setRowCount(0);
         for (Desarrollador d : desarrolladores) {
 
             model.addRow(new Object[]{d.getCodigo(), d.getNombre(), d.getLenguajes().toString(), d.getTecnologias().toString()});
@@ -1905,6 +1906,7 @@ public class Interfaz extends javax.swing.JFrame {
         if (jTabbedPane2.getSelectedIndex() == 1) {
             DefaultTableModel model = (DefaultTableModel) jTable8.getModel();
             model.setRowCount(0);
+            
             cargarDevs();
         } else if (jTabbedPane2.getSelectedIndex() == 2) {
             cargarDevs();
