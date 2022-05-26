@@ -794,23 +794,18 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(354, 354, 354)
-                .addComponent(jButton16)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel35)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane19, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(201, 201, 201)
-                                .addComponent(jButton12))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(183, 183, 183)
-                                .addComponent(jButton17)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel35)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(jScrollPane19, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(99, 99, 99)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton17, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel36)
                     .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -833,22 +828,23 @@ public class Interfaz extends javax.swing.JFrame {
                         .addGap(26, 26, 26)
                         .addComponent(jLabel36)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton12))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel37)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel37))
+                            .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8)
-                        .addComponent(jButton17)
-                        .addGap(9, 9, 9)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel38)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
-                .addComponent(jButton16)
-                .addGap(73, 73, 73))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(112, 112, 112))
         );
 
         jTabbedPane1.addTab("Modificar", jPanel3);
@@ -1989,7 +1985,7 @@ public class Interfaz extends javax.swing.JFrame {
     //Modificar una lenguaje
     private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
         DefaultTableModel model = (DefaultTableModel) jTable9.getModel();
-        if (jTable9.getSelectedRow() != 1) {
+        if (jTable9.getSelectedRow() != -1) {
             model.setValueAt(jTextField7.getText(), jTable9.getSelectedRow(), 0);
             jTextField7.setText("");
         } else {
@@ -2013,7 +2009,7 @@ public class Interfaz extends javax.swing.JFrame {
                 tecnologias += jTable10.getValueAt(i, 0) + ";";
             }
 
-            Result result = session.run("Match (d:Dev {codigo:$codigo}) set d.lenguajes=$lenguajes, d.nombre=$nombre, d.tecnologia=$tecnologias return d",
+            Result result = session.run("Match (d:Dev {codigo:$codigo}) set d.lenguajes=$lenguajes, d.nombre=$nombre, d.tecnologias=$tecnologias return d",
                     parameters("codigo", Integer.parseInt(jComboBox5.getSelectedItem().toString()), "lenguajes", lenguajes, "nombre", jTextField5.getText(),
                             "tecnologias", tecnologias));
 
@@ -2383,7 +2379,24 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton14MouseClicked
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        // TODO add your handling code here:
+        
+        int coidgo = (Integer) jTable14.getModel().getValueAt(jTable14.getSelectedRow(), 0);
+         try ( Session session = driver.session()) {
+             Result result = session.run("match (p:Proyecto{codigo:"+coidgo+"}) set p.nombre=\""+jTextField14.getText()+"\", p.fecha_inicio=\""+jTextField15.getText()+"\", p.fecha_final=\""+jTextField16.getText()+"\" return p");
+             jTextField14.setText("");
+             jTextField15.setText("");
+             jTextField16.setText("");
+             jTable14.clearSelection();
+             JOptionPane.showMessageDialog(crudProyecto, "Proyecto Modificado");
+         }
+         
+         DefaultTableModel model = (DefaultTableModel) jTable14.getModel();
+            model.setRowCount(0);
+            try ( Session session = driver.session()) {
+                Result result = session.run("match (p:Proyecto) return  p.codigo, p.nombre order by p.codigo");
+                result.list().forEach(r -> model.addRow(new Object[]{r.get(0).asInt(), r.get(1).asString()}));
+            }
+            jTable14.setModel(model);
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton16MouseClicked
@@ -2445,7 +2458,7 @@ public class Interfaz extends javax.swing.JFrame {
         model.setRowCount(0);
 
         try ( Session session = driver.session()) {
-            Result result = session.run("match (p:Proyecto{codigo:" + Integer.parseInt(jTable14.getValueAt(jTable14.getSelectedRow(), 0).toString()) + "})-[:POSEE]->(d:Dev) return d.codigo, d.nombre, d.lenguajes, d.tecnologias order by d.codigo");
+            Result result = session.run("match (p:Proyecto{codigo:" + Integer.parseInt(jTable14.getValueAt(jTable14.getSelectedRow(), 0).toString()) + "})-[:POSEE]->(d:Dev) where not (d)-[:REPARA]->(:Bug{codigoproyecto:"+(Integer) (jTable14.getModel().getValueAt(jTable14.getSelectedRow(), 0))+ "}) return d.codigo, d.nombre, d.lenguajes, d.tecnologias order by d.codigo");
 
             result.list().forEach(r -> model.addRow(new Object[]{r.get(0).asInt(), r.get(1).asString(), r.get(2).asString(), r.get(3).asString()}));
 
@@ -2476,7 +2489,7 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         try ( Session session = driver.session()) {
-            JOptionPane.showMessageDialog(aniadirDevs, (String) jComboBox7.getSelectedItem());
+            
             Result result = session.run("MATCH (p1:Proyecto{codigo:" + (Integer) (jTable14.getModel().getValueAt(jTable14.getSelectedRow(), 0)) + "}),(d1:Dev{codigo:" + Integer.parseInt((String) jComboBox7.getSelectedItem()) + "})"
                     + "CREATE (p1)-[:POSEE]->(d1)");
             System.out.println(result.consume().counters().relationshipsCreated());
@@ -2537,6 +2550,7 @@ public class Interfaz extends javax.swing.JFrame {
             try ( Session session = driver.session()) {
                 Result result = session.run("match (p:Proyecto{codigo:" + (Integer) (jTable14.getModel().getValueAt(jTable14.getSelectedRow(), 0))
                         + "})-[r:POSEE]->(d:Dev{codigo:" + (Integer) jTable12.getModel().getValueAt(jTable12.getSelectedRow(), 0) + ""
+                        + ""
                         + "}) delete r");
 
                 ((DefaultTableModel) jTable12.getModel()).removeRow(jTable12.getSelectedRow());
