@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.concurrent.CompletionStage;
 import java.util.stream.Collectors;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.jfree.chart.ChartFactory;
@@ -50,6 +51,7 @@ public class Interfaz extends javax.swing.JFrame {
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
+        jButton31 = new javax.swing.JButton();
         menuDev = new javax.swing.JDialog();
         jLabel2 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
@@ -57,6 +59,7 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jButton29 = new javax.swing.JButton();
+        jButton34 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         menuDevProyectos = new javax.swing.JDialog();
         jLabel4 = new javax.swing.JLabel();
@@ -74,6 +77,7 @@ public class Interfaz extends javax.swing.JFrame {
         jButton14 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
+        jButton35 = new javax.swing.JButton();
         estadisticasBugs = new javax.swing.JDialog();
         jLabel6 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
@@ -95,6 +99,7 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel34 = new javax.swing.JLabel();
         jScrollPane14 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
+        jToggleButton1 = new javax.swing.JToggleButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane18 = new javax.swing.JScrollPane();
         jTable13 = new javax.swing.JTable();
@@ -146,6 +151,7 @@ public class Interfaz extends javax.swing.JFrame {
         jButton27 = new javax.swing.JButton();
         jButton28 = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
+        jButton38 = new javax.swing.JButton();
         assignBugToDev = new javax.swing.JDialog();
         jLabel13 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -175,6 +181,7 @@ public class Interfaz extends javax.swing.JFrame {
         jButton30 = new javax.swing.JButton();
         jScrollPane20 = new javax.swing.JScrollPane();
         jTable15 = new javax.swing.JTable();
+        jButton33 = new javax.swing.JButton();
         QAtodosLosBugs = new javax.swing.JDialog();
         jScrollPane8 = new javax.swing.JScrollPane();
         jTable5 = new javax.swing.JTable();
@@ -190,10 +197,35 @@ public class Interfaz extends javax.swing.JFrame {
         jScrollPane17 = new javax.swing.JScrollPane();
         jTable12 = new javax.swing.JTable();
         jButton22 = new javax.swing.JButton();
+        creacionUsuarios = new javax.swing.JDialog();
+        jLabel40 = new javax.swing.JLabel();
+        jLabel41 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel42 = new javax.swing.JLabel();
+        jPasswordField1 = new javax.swing.JPasswordField();
+        jLabel43 = new javax.swing.JLabel();
+        jComboBox8 = new javax.swing.JComboBox<>();
+        jButton32 = new javax.swing.JButton();
+        comentariosBug = new javax.swing.JDialog();
+        jTextField12 = new javax.swing.JTextField();
+        jButton36 = new javax.swing.JButton();
+        jScrollPane21 = new javax.swing.JScrollPane();
+        jTextPane3 = new javax.swing.JTextPane();
+        jLabel44 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
+        calendario = new javax.swing.JDialog();
+        jButton39 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jButton37 = new javax.swing.JButton();
+        jComboBox9 = new javax.swing.JComboBox<>();
+        jPasswordField2 = new javax.swing.JPasswordField();
+        jTextField13 = new javax.swing.JTextField();
+        jLabel46 = new javax.swing.JLabel();
+        jLabel47 = new javax.swing.JLabel();
+        jLabel48 = new javax.swing.JLabel();
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("Administrador del Desarrollo de Software");
@@ -238,6 +270,18 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
+        jButton31.setText("Creación de usuarios");
+        jButton31.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton31MouseClicked(evt);
+            }
+        });
+        jButton31.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton31ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout menuAdminLayout = new javax.swing.GroupLayout(menuAdmin.getContentPane());
         menuAdmin.getContentPane().setLayout(menuAdminLayout);
         menuAdminLayout.setHorizontalGroup(
@@ -248,18 +292,19 @@ public class Interfaz extends javax.swing.JFrame {
                         .addGap(12, 12, 12)
                         .addComponent(jButton11)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel5)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jLabel5))
                     .addGroup(menuAdminLayout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addGroup(menuAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(35, 35, 35)
-                        .addGroup(menuAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton8)
-                            .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(40, Short.MAX_VALUE))
+                        .addGroup(menuAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(41, 41, 41))
         );
         menuAdminLayout.setVerticalGroup(
             menuAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,15 +313,20 @@ public class Interfaz extends javax.swing.JFrame {
                 .addGroup(menuAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jButton11))
-                .addGap(46, 46, 46)
-                .addGroup(menuAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43)
-                .addGroup(menuAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addGroup(menuAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(menuAdminLayout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addGroup(menuAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(43, 43, 43)
+                        .addGroup(menuAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(menuAdminLayout.createSequentialGroup()
+                        .addGap(93, 93, 93)
+                        .addComponent(jButton31, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -317,6 +367,13 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
+        jButton34.setText("Calendario");
+        jButton34.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton34ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout menuDevLayout = new javax.swing.GroupLayout(menuDev.getContentPane());
         menuDev.getContentPane().setLayout(menuDevLayout);
         menuDevLayout.setHorizontalGroup(
@@ -326,7 +383,9 @@ public class Interfaz extends javax.swing.JFrame {
                 .addComponent(jButton29)
                 .addGap(121, 121, 121)
                 .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton34)
+                .addGap(48, 48, 48))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuDevLayout.createSequentialGroup()
                 .addContainerGap(102, Short.MAX_VALUE)
                 .addGroup(menuDevLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -344,7 +403,9 @@ public class Interfaz extends javax.swing.JFrame {
             .addGroup(menuDevLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(menuDevLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(menuDevLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton34))
                     .addComponent(jButton29))
                 .addGap(19, 19, 19)
                 .addComponent(jLabel3)
@@ -467,6 +528,18 @@ public class Interfaz extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(jTable2);
 
+        jButton35.setText("Comentarios");
+        jButton35.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton35MouseClicked(evt);
+            }
+        });
+        jButton35.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton35ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout menuDevBugsLayout = new javax.swing.GroupLayout(menuDevBugs.getContentPane());
         menuDevBugs.getContentPane().setLayout(menuDevBugsLayout);
         menuDevBugsLayout.setHorizontalGroup(
@@ -487,7 +560,10 @@ public class Interfaz extends javax.swing.JFrame {
                 .addGroup(menuDevBugsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
-                    .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(menuDevBugsLayout.createSequentialGroup()
+                        .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton35, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(60, 60, 60))
         );
         menuDevBugsLayout.setVerticalGroup(
@@ -499,19 +575,20 @@ public class Interfaz extends javax.swing.JFrame {
                 .addGroup(menuDevBugsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel10)
                     .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(menuDevBugsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(menuDevBugsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton35, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton14)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -618,6 +695,13 @@ public class Interfaz extends javax.swing.JFrame {
         jTextPane1.setEditable(false);
         jScrollPane14.setViewportView(jTextPane1);
 
+        jToggleButton1.setText("Tecnologias");
+        jToggleButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jToggleButton1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -634,12 +718,7 @@ public class Interfaz extends javax.swing.JFrame {
                                 .addGap(76, 76, 76)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel33)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(39, 39, 39)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -651,16 +730,23 @@ public class Interfaz extends javax.swing.JFrame {
                                 .addGap(76, 76, 76)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel34)))))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel34)
+                                        .addGap(244, 244, 244)
+                                        .addComponent(jToggleButton1)))))
+                        .addGap(316, 316, 316)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(317, 317, 317)
                         .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(190, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(93, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel30)
                     .addComponent(jLabel33))
@@ -673,7 +759,8 @@ public class Interfaz extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel31)
-                            .addComponent(jLabel34))
+                            .addComponent(jLabel34)
+                            .addComponent(jToggleButton1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -1156,6 +1243,13 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel14.setText("CRUD Desarrolladores");
 
+        jButton38.setText("Tecnologias");
+        jButton38.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton38ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout crudDevLayout = new javax.swing.GroupLayout(crudDev.getContentPane());
         crudDev.getContentPane().setLayout(crudDevLayout);
         crudDevLayout.setHorizontalGroup(
@@ -1164,6 +1258,10 @@ public class Interfaz extends javax.swing.JFrame {
                 .addGap(253, 253, 253)
                 .addComponent(jLabel14)
                 .addContainerGap(297, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, crudDevLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton38)
+                .addGap(166, 166, 166))
             .addGroup(crudDevLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(crudDevLayout.createSequentialGroup()
                     .addContainerGap()
@@ -1175,7 +1273,9 @@ public class Interfaz extends javax.swing.JFrame {
             .addGroup(crudDevLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jLabel14)
-                .addContainerGap(481, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 251, Short.MAX_VALUE)
+                .addComponent(jButton38)
+                .addGap(208, 208, 208))
             .addGroup(crudDevLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, crudDevLayout.createSequentialGroup()
                     .addGap(56, 56, 56)
@@ -1384,6 +1484,8 @@ public class Interfaz extends javax.swing.JFrame {
         ));
         jScrollPane20.setViewportView(jTable15);
 
+        jButton33.setText("Crear Reporte");
+
         javax.swing.GroupLayout menuQALayout = new javax.swing.GroupLayout(menuQA.getContentPane());
         menuQA.getContentPane().setLayout(menuQALayout);
         menuQALayout.setHorizontalGroup(
@@ -1412,8 +1514,12 @@ public class Interfaz extends javax.swing.JFrame {
                         .addGroup(menuQALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel20)
                             .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton20)))))
+                            .addComponent(jButton20)
+                            .addGroup(menuQALayout.createSequentialGroup()
+                                .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton33, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(74, 74, 74))))
         );
         menuQALayout.setVerticalGroup(
             menuQALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1433,7 +1539,9 @@ public class Interfaz extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(menuQALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton21, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(menuQALayout.createSequentialGroup()
@@ -1450,6 +1558,11 @@ public class Interfaz extends javax.swing.JFrame {
                 "Código", "Código proyecto software", "Descripción", "Nivel de urgencia", "Estado", "Fecha inicio reparación", "Fecha finalizado"
             }
         ));
+        jTable5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable5MouseClicked(evt);
+            }
+        });
         jScrollPane8.setViewportView(jTable5);
 
         jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -1471,7 +1584,7 @@ public class Interfaz extends javax.swing.JFrame {
         QAtodosLosBugsLayout.setVerticalGroup(
             QAtodosLosBugsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, QAtodosLosBugsLayout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel22)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1588,6 +1701,143 @@ public class Interfaz extends javax.swing.JFrame {
                 .addContainerGap(49, Short.MAX_VALUE))
         );
 
+        jLabel40.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel40.setText("Creación de usuarios");
+
+        jLabel41.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel41.setText("Login");
+
+        jTextField2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        jLabel42.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel42.setText("Contraseña");
+
+        jPasswordField1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        jLabel43.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel43.setText("Rol");
+
+        jButton32.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton32.setText("Crear Usuario");
+
+        javax.swing.GroupLayout creacionUsuariosLayout = new javax.swing.GroupLayout(creacionUsuarios.getContentPane());
+        creacionUsuarios.getContentPane().setLayout(creacionUsuariosLayout);
+        creacionUsuariosLayout.setHorizontalGroup(
+            creacionUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, creacionUsuariosLayout.createSequentialGroup()
+                .addGap(0, 166, Short.MAX_VALUE)
+                .addComponent(jLabel40)
+                .addGap(165, 165, 165))
+            .addGroup(creacionUsuariosLayout.createSequentialGroup()
+                .addGap(78, 78, 78)
+                .addGroup(creacionUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton32, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
+                    .addGroup(creacionUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jComboBox8, 0, 317, Short.MAX_VALUE)
+                        .addComponent(jLabel43)
+                        .addComponent(jPasswordField1)
+                        .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField2)
+                        .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        creacionUsuariosLayout.setVerticalGroup(
+            creacionUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(creacionUsuariosLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jLabel40)
+                .addGap(30, 30, 30)
+                .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel43)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(jButton32, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(54, Short.MAX_VALUE))
+        );
+
+        jTextField12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+        jButton36.setText("X");
+
+        jTextPane3.setEditable(false);
+        jScrollPane21.setViewportView(jTextPane3);
+
+        jLabel44.setText("Usuario Actual:");
+
+        jLabel45.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel45.setText("jLabel45");
+
+        javax.swing.GroupLayout comentariosBugLayout = new javax.swing.GroupLayout(comentariosBug.getContentPane());
+        comentariosBug.getContentPane().setLayout(comentariosBugLayout);
+        comentariosBugLayout.setHorizontalGroup(
+            comentariosBugLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(comentariosBugLayout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addGroup(comentariosBugLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(comentariosBugLayout.createSequentialGroup()
+                        .addComponent(jLabel44)
+                        .addGap(33, 33, 33)
+                        .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(comentariosBugLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane21)
+                        .addGroup(comentariosBugLayout.createSequentialGroup()
+                            .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButton36, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(43, Short.MAX_VALUE))
+        );
+        comentariosBugLayout.setVerticalGroup(
+            comentariosBugLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, comentariosBugLayout.createSequentialGroup()
+                .addGroup(comentariosBugLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(comentariosBugLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel44)
+                        .addGap(28, 28, 28))
+                    .addGroup(comentariosBugLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)))
+                .addComponent(jScrollPane21, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(comentariosBugLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jButton36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextField12, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE))
+                .addGap(32, 32, 32))
+        );
+
+        jButton39.setText("volver");
+        jButton39.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton39ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout calendarioLayout = new javax.swing.GroupLayout(calendario.getContentPane());
+        calendario.getContentPane().setLayout(calendarioLayout);
+        calendarioLayout.setHorizontalGroup(
+            calendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(calendarioLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jButton39)
+                .addContainerGap(314, Short.MAX_VALUE))
+        );
+        calendarioLayout.setVerticalGroup(
+            calendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(calendarioLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jButton39)
+                .addContainerGap(264, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
@@ -1624,36 +1874,80 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
+        jButton37.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton37.setText("INICIAR SESION");
+
+        jPasswordField2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        jTextField13.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        jLabel46.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel46.setText("Login");
+
+        jLabel47.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel47.setText("Contraseña");
+
+        jLabel48.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel48.setText("Rol");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(147, 147, 147)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton37, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBox9, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel48)
+                    .addComponent(jPasswordField2)
+                    .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(76, 76, 76)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addComponent(jLabel1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                         .addComponent(jButton5)
-                        .addGap(52, 52, 52)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24))))
+                        .addGap(24, 24, 24))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(jLabel1)
-                .addGap(44, 44, 44)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(jLabel1)
+                        .addGap(43, 43, 43)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel48)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jComboBox9, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addComponent(jButton37, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(97, 97, 97)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         pack();
@@ -1732,10 +2026,10 @@ public class Interfaz extends javax.swing.JFrame {
         DefaultPieDataset datos = new DefaultPieDataset();
         //Obtener los datos por medio de los 3 queries
         try ( Session session = driver.session()) {
-            
+
             jPanel4.removeAll();
             jPanel4.revalidate();
-            
+
             ArrayList<Integer> cantidad = new ArrayList();
             //Bugs nuevos
             Result result = session.run("match (b:Bug) where b.estado='nuevo' return count(b)");
@@ -1906,7 +2200,7 @@ public class Interfaz extends javax.swing.JFrame {
         if (jTabbedPane2.getSelectedIndex() == 1) {
             DefaultTableModel model = (DefaultTableModel) jTable8.getModel();
             model.setRowCount(0);
-            
+
             cargarDevs();
         } else if (jTabbedPane2.getSelectedIndex() == 2) {
             cargarDevs();
@@ -1993,6 +2287,7 @@ public class Interfaz extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Tiene que seleccionar el el lenguaje a modificar!");
         }
+
 
     }//GEN-LAST:event_jButton26ActionPerformed
 
@@ -2381,24 +2676,24 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton14MouseClicked
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        
+
         int coidgo = (Integer) jTable14.getModel().getValueAt(jTable14.getSelectedRow(), 0);
-         try ( Session session = driver.session()) {
-             Result result = session.run("match (p:Proyecto{codigo:"+coidgo+"}) set p.nombre=\""+jTextField14.getText()+"\", p.fecha_inicio=\""+jTextField15.getText()+"\", p.fecha_final=\""+jTextField16.getText()+"\" return p");
-             jTextField14.setText("");
-             jTextField15.setText("");
-             jTextField16.setText("");
-             jTable14.clearSelection();
-             JOptionPane.showMessageDialog(crudProyecto, "Proyecto Modificado");
-         }
-         
-         DefaultTableModel model = (DefaultTableModel) jTable14.getModel();
-            model.setRowCount(0);
-            try ( Session session = driver.session()) {
-                Result result = session.run("match (p:Proyecto) return  p.codigo, p.nombre order by p.codigo");
-                result.list().forEach(r -> model.addRow(new Object[]{r.get(0).asInt(), r.get(1).asString()}));
-            }
-            jTable14.setModel(model);
+        try ( Session session = driver.session()) {
+            Result result = session.run("match (p:Proyecto{codigo:" + coidgo + "}) set p.nombre=\"" + jTextField14.getText() + "\", p.fecha_inicio=\"" + jTextField15.getText() + "\", p.fecha_final=\"" + jTextField16.getText() + "\" return p");
+            jTextField14.setText("");
+            jTextField15.setText("");
+            jTextField16.setText("");
+            jTable14.clearSelection();
+            JOptionPane.showMessageDialog(crudProyecto, "Proyecto Modificado");
+        }
+
+        DefaultTableModel model = (DefaultTableModel) jTable14.getModel();
+        model.setRowCount(0);
+        try ( Session session = driver.session()) {
+            Result result = session.run("match (p:Proyecto) return  p.codigo, p.nombre order by p.codigo");
+            result.list().forEach(r -> model.addRow(new Object[]{r.get(0).asInt(), r.get(1).asString()}));
+        }
+        jTable14.setModel(model);
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton16MouseClicked
@@ -2414,15 +2709,14 @@ public class Interfaz extends javax.swing.JFrame {
         if (jTable2.getSelectedRow() >= 0) {
             try ( Session session = driver.session()) {
                 int codigoBug = Integer.parseInt(jTable2.getValueAt(jTable2.getSelectedRow(), 1).toString());
-                
+
                 //Verificar que el bug tenga fecha de inicio si quiere ser finalizado
                 ArrayList<String> fechainicio = new ArrayList();
                 Result result = session.run("match (b:Bug) where b.codigo=" + codigoBug + " return b.fechaInicio");
                 result.list().forEach(r -> fechainicio.add(r.get(0).asString()));
                 if (fechainicio.get(0).equals("")) {
                     JOptionPane.showMessageDialog(null, "Ese bug aun no tiene fecha de inicio");
-                } 
-                else {
+                } else {
 
                     //Romper la relación
                     result = session.run("match (d:Dev {codigo:" + devcodeGlobal + "})-[r:REPARA]-(b:Bug {codigo:" + codigoBug + "}) delete r");
@@ -2437,10 +2731,10 @@ public class Interfaz extends javax.swing.JFrame {
 
                     jTextField1.setText("");
                     JOptionPane.showMessageDialog(menuDevBugs, "Fecha de finalización establecida. Bug reparado");
-                    DefaultTableModel modelo = (DefaultTableModel)jTable2.getModel();
+                    DefaultTableModel modelo = (DefaultTableModel) jTable2.getModel();
                     modelo.removeRow(jTable2.getSelectedRow());
                     jTable2.setModel(modelo);
-                    
+
                     jTable2.clearSelection();
                     jTextArea1.setText("");
                 }
@@ -2460,7 +2754,7 @@ public class Interfaz extends javax.swing.JFrame {
         model.setRowCount(0);
 
         try ( Session session = driver.session()) {
-            Result result = session.run("match (p:Proyecto{codigo:" + Integer.parseInt(jTable14.getValueAt(jTable14.getSelectedRow(), 0).toString()) + "})-[:POSEE]->(d:Dev) where not (d)-[:REPARA]->(:Bug{codigoproyecto:"+(Integer) (jTable14.getModel().getValueAt(jTable14.getSelectedRow(), 0))+ "}) return d.codigo, d.nombre, d.lenguajes, d.tecnologias order by d.codigo");
+            Result result = session.run("match (p:Proyecto{codigo:" + Integer.parseInt(jTable14.getValueAt(jTable14.getSelectedRow(), 0).toString()) + "})-[:POSEE]->(d:Dev) where not (d)-[:REPARA]->(:Bug{codigoproyecto:" + (Integer) (jTable14.getModel().getValueAt(jTable14.getSelectedRow(), 0)) + "}) return d.codigo, d.nombre, d.lenguajes, d.tecnologias order by d.codigo");
 
             result.list().forEach(r -> model.addRow(new Object[]{r.get(0).asInt(), r.get(1).asString(), r.get(2).asString(), r.get(3).asString()}));
 
@@ -2491,7 +2785,7 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         try ( Session session = driver.session()) {
-            
+
             Result result = session.run("MATCH (p1:Proyecto{codigo:" + (Integer) (jTable14.getModel().getValueAt(jTable14.getSelectedRow(), 0)) + "}),(d1:Dev{codigo:" + Integer.parseInt((String) jComboBox7.getSelectedItem()) + "})"
                     + "CREATE (p1)-[:POSEE]->(d1)");
             System.out.println(result.consume().counters().relationshipsCreated());
@@ -2568,6 +2862,65 @@ public class Interfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton14ActionPerformed
 
+    private void jButton31MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton31MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton31MouseClicked
+
+    private void jButton31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton31ActionPerformed
+        creacionUsuarios.pack();
+        creacionUsuarios.setLocationRelativeTo(this);
+        creacionUsuarios.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton31ActionPerformed
+
+    private void jButton35MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton35MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton35MouseClicked
+
+    private void jTable5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable5MouseClicked
+        if (jTable5.getSelectedRow() != -1) {
+            comentariosBug.pack();
+            comentariosBug.setLocationRelativeTo(this);
+            comentariosBug.setVisible(true);
+            QAtodosLosBugs.setVisible(false);
+            jTextField12.setEnabled(false);
+            jButton36.setEnabled(false);
+        }
+    }//GEN-LAST:event_jTable5MouseClicked
+
+    private void jButton35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton35ActionPerformed
+        if (jTable2.getSelectedRow() != 1) {
+            comentariosBug.pack();
+            comentariosBug.setLocationRelativeTo(this);
+            comentariosBug.setVisible(true);
+            menuDevBugs.setVisible(false);
+        }
+    }//GEN-LAST:event_jButton35ActionPerformed
+
+    private void jToggleButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseClicked
+        JFileChooser jf = new JFileChooser();
+        jf.showOpenDialog(crudProyecto);
+    }//GEN-LAST:event_jToggleButton1MouseClicked
+
+    private void jButton38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton38ActionPerformed
+        JFileChooser jf = new JFileChooser();
+        jf.showOpenDialog(crudDev);
+    }//GEN-LAST:event_jButton38ActionPerformed
+
+    private void jButton34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton34ActionPerformed
+        calendario.pack();
+        calendario.setLocationRelativeTo(this);
+        calendario.setVisible(true);
+        menuDev.setVisible(false);
+    }//GEN-LAST:event_jButton34ActionPerformed
+
+    private void jButton39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton39ActionPerformed
+        menuDev.pack();
+        menuDev.setLocationRelativeTo(this);
+        menuDev.setVisible(true);
+        calendario.setVisible(false);
+    }//GEN-LAST:event_jButton39ActionPerformed
+
     ArrayList<Desarrollador> devsSeleccionados = new ArrayList();
 
     public static void main(String args[]) {
@@ -2608,6 +2961,9 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JDialog QAtodosLosBugs;
     private javax.swing.JDialog aniadirDevs;
     private javax.swing.JDialog assignBugToDev;
+    private javax.swing.JDialog calendario;
+    private javax.swing.JDialog comentariosBug;
+    private javax.swing.JDialog creacionUsuarios;
     private javax.swing.JDialog crudDev;
     private javax.swing.JDialog crudProyecto;
     private javax.swing.JDialog eliminarDevProjecto;
@@ -2636,6 +2992,15 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JButton jButton29;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton30;
+    private javax.swing.JButton jButton31;
+    private javax.swing.JButton jButton32;
+    private javax.swing.JButton jButton33;
+    private javax.swing.JButton jButton34;
+    private javax.swing.JButton jButton35;
+    private javax.swing.JButton jButton36;
+    private javax.swing.JButton jButton37;
+    private javax.swing.JButton jButton38;
+    private javax.swing.JButton jButton39;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
@@ -2649,6 +3014,8 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JComboBox<String> jComboBox6;
     private javax.swing.JComboBox<String> jComboBox7;
+    private javax.swing.JComboBox<String> jComboBox8;
+    private javax.swing.JComboBox<String> jComboBox9;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -2684,6 +3051,15 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -2696,6 +3072,8 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
@@ -2709,6 +3087,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane19;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane20;
+    private javax.swing.JScrollPane jScrollPane21;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -2739,9 +3118,12 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
+    private javax.swing.JTextField jTextField12;
+    private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField16;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
@@ -2751,6 +3133,8 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField9;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JTextPane jTextPane2;
+    private javax.swing.JTextPane jTextPane3;
+    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JDialog menuAdmin;
     private javax.swing.JDialog menuDev;
     private javax.swing.JDialog menuDevBugs;
