@@ -74,6 +74,11 @@ public class Bug {
     public void setFechaFinalizado(String fechaFinalizado) {
         this.fechaFinalizado = fechaFinalizado;
     }
+
+    @Override
+    public String toString() {
+        return "Bug{" + "codigo=" + codigo + ", descripcion=" + descripcion + ", codigoProyecto=" + codigoProyecto + ", nivelUrgencia=" + nivelUrgencia + ", estado=" + estado + ", fechaInicio=" + fechaInicio + ", fechaFinalizado=" + fechaFinalizado + '}';
+    }
     
     
     
