@@ -116,7 +116,9 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel34 = new javax.swing.JLabel();
         jScrollPane14 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        jScrollPane25 = new javax.swing.JScrollPane();
+        jTable18 = new javax.swing.JTable();
+        jButton38 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane18 = new javax.swing.JScrollPane();
         jTable13 = new javax.swing.JTable();
@@ -770,10 +772,35 @@ public class Interfaz extends javax.swing.JFrame {
         jTextPane1.setEditable(false);
         jScrollPane14.setViewportView(jTextPane1);
 
-        jToggleButton1.setText("Tecnologias");
-        jToggleButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jToggleButton1MouseClicked(evt);
+        jTable18.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Codigo", "Nombre"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane25.setViewportView(jTable18);
+
+        jButton38.setText("Agregar");
+        jButton38.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton38ActionPerformed(evt);
             }
         });
 
@@ -805,11 +832,8 @@ public class Interfaz extends javax.swing.JFrame {
                                 .addGap(76, 76, 76)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel34)
-                                        .addGap(244, 244, 244)
-                                        .addComponent(jToggleButton1)))))
-                        .addGap(316, 316, 316)
+                                    .addComponent(jLabel34))))
+                        .addGap(549, 549, 549)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -817,11 +841,18 @@ public class Interfaz extends javax.swing.JFrame {
                         .addGap(317, 317, 317)
                         .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(485, 485, 485)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jButton38, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane25, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(486, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(93, Short.MAX_VALUE)
+                .addContainerGap(99, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel30)
                     .addComponent(jLabel33))
@@ -834,8 +865,7 @@ public class Interfaz extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel31)
-                            .addComponent(jLabel34)
-                            .addComponent(jToggleButton1))
+                            .addComponent(jLabel34))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -851,6 +881,13 @@ public class Interfaz extends javax.swing.JFrame {
                 .addGap(47, 47, 47)
                 .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(114, 114, 114)
+                    .addComponent(jScrollPane25, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGap(18, 18, 18)
+                    .addComponent(jButton38)
+                    .addGap(115, 115, 115)))
         );
 
         jTabbedPane1.addTab("Insertar", jPanel1);
@@ -2810,11 +2847,19 @@ public class Interfaz extends javax.swing.JFrame {
                         parameters("codigo", codigo.get(0) + 1, "codigo1", d.getCodigo()));
                 System.out.println(result.consume().counters().relationshipsCreated());
             }
-
+             DefaultTableModel model = (DefaultTableModel) jTable18.getModel();
+            model.setRowCount(0);
+            devsSeleccionados.clear();
             JOptionPane.showMessageDialog(crudProyecto, "Se inserto correctamente");
             jTextField9.setText("");
             jTextField10.setText("");
             jTextField11.setText("");
+            jComboBox6.removeAllItems();
+            jComboBox6.removeAll();
+            for (int i = 0; i < desarrolladores.size(); i++) {
+                jComboBox6.addItem(String.valueOf(desarrolladores.get(i).getCodigo()));
+            }
+            
         }
     }//GEN-LAST:event_jButton15ActionPerformed
 
@@ -3252,11 +3297,6 @@ public class Interfaz extends javax.swing.JFrame {
             menuDevBugs.setVisible(false);
         }
     }//GEN-LAST:event_jButton35ActionPerformed
-
-    private void jToggleButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseClicked
-        JFileChooser jf = new JFileChooser();
-        jf.showOpenDialog(crudProyecto);
-    }//GEN-LAST:event_jToggleButton1MouseClicked
 
     private void jButton34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton34ActionPerformed
         calendario.pack();
@@ -3699,6 +3739,21 @@ public class Interfaz extends javax.swing.JFrame {
         }
          */
     }//GEN-LAST:event_jButton44MouseClicked
+
+    private void jButton38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton38ActionPerformed
+                                            
+        Desarrollador de = new Desarrollador();
+        for (Desarrollador d : desarrolladores) {
+            if (d.getCodigo() == Integer.parseInt(jComboBox6.getSelectedItem().toString())) {
+                de = d;
+            }
+        }
+       
+        jComboBox6.removeItemAt(jComboBox6.getSelectedIndex());
+        DefaultTableModel model = (DefaultTableModel) jTable18.getModel();
+        devsSeleccionados.add(de);
+        model.addRow(new Object[]{de.getCodigo(), de.getNombre()});
+    }//GEN-LAST:event_jButton38ActionPerformed
     public void cargarUsuarios() {
         try ( Session session = driver.session()) {
             Result result = session.run("match (u:Usuario{rol:'Desarrollador'}) where not (u)-[:INFO]-(:Dev) return u.login, u.password, u.rol");
@@ -3787,6 +3842,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JButton jButton35;
     private javax.swing.JButton jButton36;
     private javax.swing.JButton jButton37;
+    private javax.swing.JButton jButton38;
     private javax.swing.JButton jButton39;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton40;
@@ -3897,6 +3953,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane22;
     private javax.swing.JScrollPane jScrollPane23;
     private javax.swing.JScrollPane jScrollPane24;
+    private javax.swing.JScrollPane jScrollPane25;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -3915,6 +3972,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JTable jTable15;
     private javax.swing.JTable jTable16;
     private javax.swing.JTable jTable17;
+    private javax.swing.JTable jTable18;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
@@ -3952,7 +4010,6 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JTextPane jTextPane2;
     private javax.swing.JTextPane jTextPane3;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JDialog mandarCorreo;
     private javax.swing.JDialog menuAdmin;
     private javax.swing.JDialog menuDev;
