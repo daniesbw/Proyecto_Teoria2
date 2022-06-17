@@ -168,7 +168,6 @@ public class Interfaz extends javax.swing.JFrame {
         jButton27 = new javax.swing.JButton();
         jButton28 = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
-        jButton38 = new javax.swing.JButton();
         assignBugToDev = new javax.swing.JDialog();
         jLabel13 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -1324,13 +1323,6 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel14.setText("CRUD Desarrolladores");
 
-        jButton38.setText("Tecnologias");
-        jButton38.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton38ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout crudDevLayout = new javax.swing.GroupLayout(crudDev.getContentPane());
         crudDev.getContentPane().setLayout(crudDevLayout);
         crudDevLayout.setHorizontalGroup(
@@ -1339,10 +1331,6 @@ public class Interfaz extends javax.swing.JFrame {
                 .addGap(253, 253, 253)
                 .addComponent(jLabel14)
                 .addContainerGap(297, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, crudDevLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton38)
-                .addGap(166, 166, 166))
             .addGroup(crudDevLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(crudDevLayout.createSequentialGroup()
                     .addContainerGap()
@@ -1354,9 +1342,7 @@ public class Interfaz extends javax.swing.JFrame {
             .addGroup(crudDevLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jLabel14)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 251, Short.MAX_VALUE)
-                .addComponent(jButton38)
-                .addGap(208, 208, 208))
+                .addContainerGap(481, Short.MAX_VALUE))
             .addGroup(crudDevLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, crudDevLayout.createSequentialGroup()
                     .addGap(56, 56, 56)
@@ -2519,7 +2505,19 @@ public class Interfaz extends javax.swing.JFrame {
             DefaultTableModel modelo2 = new DefaultTableModel(null, t);
             jTable7.setModel(modelo2);
 
+            cargarUsuarios();
+            String salida = "";
+            for (int i = 0; i < users.size(); i++) {
+                salida += i + "- " + users.get(i).getLogin()+"\n";
+            }
+
+            int op = Integer.parseInt(JOptionPane.showInputDialog("Seleccione su login: \n"+salida));
+            
+            result = session.run("MATCH (u:Usuario{login:'" + users.get(op).getLogin() + "',password:'" + users.get(op).getPass() + "',rol:'" + users.get(op).getRol() + "'}),(d1:Dev{codigo:" + (codigo.get(0) + 1) + "})"
+                    + "CREATE (u)-[:INFO]->(d1)");
+            
             JOptionPane.showMessageDialog(null, "Se guardó el desarrollador");
+
         }
     }//GEN-LAST:event_jButton25MouseClicked
 
@@ -2987,22 +2985,22 @@ public class Interfaz extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Error al asignar bug al desarrollador, debe seleccionar todos los elementos");
         }
-        
+
     }//GEN-LAST:event_jButton19MouseClicked
-    
-    public void setearCorreoDestino(){
+
+    public void setearCorreoDestino() {
         try ( Session session = driver.session()) {
             Result result = session.run("match (u:Usuario)-[:INFO]-(d:Dev) where d.codigo="
-                    +(int) jTable4.getValueAt(jTable4.getSelectedRow(), 0)+" return u.login");
+                    + (int) jTable4.getValueAt(jTable4.getSelectedRow(), 0) + " return u.login");
             ArrayList<String> x = new ArrayList();
             result.list().forEach(r -> x.add(r.get(0).asString()));
             EnviarCorreo ec = new EnviarCorreo(x.get(0));
-            
+
             ec.setVisible(true);
-            
+
         }
     }
-    
+
     private void jComboBox3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox3MouseClicked
 
     }//GEN-LAST:event_jComboBox3MouseClicked
@@ -3259,11 +3257,6 @@ public class Interfaz extends javax.swing.JFrame {
         JFileChooser jf = new JFileChooser();
         jf.showOpenDialog(crudProyecto);
     }//GEN-LAST:event_jToggleButton1MouseClicked
-
-    private void jButton38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton38ActionPerformed
-        JFileChooser jf = new JFileChooser();
-        jf.showOpenDialog(crudDev);
-    }//GEN-LAST:event_jButton38ActionPerformed
 
     private void jButton34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton34ActionPerformed
         calendario.pack();
@@ -3622,7 +3615,6 @@ public class Interfaz extends javax.swing.JFrame {
             DefaultTableModel modelo2 = new DefaultTableModel(null, t);
             jTable17.setModel(modelo2);
 
-           
         }
         try ( Session session = driver.session()) {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -3640,11 +3632,9 @@ public class Interfaz extends javax.swing.JFrame {
 
             result.list().forEach(r -> codigo.add(r.get(0).asInt()));
 
-            
-            
-             result = session.run("MATCH (u:Usuario{login:'" + jTextField2.getText() + "',password:'" + sb.toString() + "',rol:'" + jComboBox8.getItemAt(jComboBox8.getSelectedIndex()) + "'}),(d1:Dev{codigo:" + (codigo.get(0)) + "})"
+            result = session.run("MATCH (u:Usuario{login:'" + jTextField2.getText() + "',password:'" + sb.toString() + "',rol:'" + jComboBox8.getItemAt(jComboBox8.getSelectedIndex()) + "'}),(d1:Dev{codigo:" + (codigo.get(0)) + "})"
                     + "CREATE (u)-[:INFO]->(d1)");
-             JOptionPane.showMessageDialog(null, "Se guardó el desarrollador");
+            JOptionPane.showMessageDialog(null, "Se guardó el desarrollador");
             creacionDev.setVisible(false);
             JOptionPane.showMessageDialog(creacionUsuarios, "Se creo que el usuario perfectamente");
             jTextField2.setText("");
@@ -3707,8 +3697,14 @@ public class Interfaz extends javax.swing.JFrame {
         } catch (MessagingException ex) {
             Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
         }
-        */
+         */
     }//GEN-LAST:event_jButton44MouseClicked
+    public void cargarUsuarios() {
+        try ( Session session = driver.session()) {
+            Result result = session.run("match (u:Usuario{rol:'Desarrollador'}) where not (u)-[:INFO]-(:Dev) return u.login, u.password, u.rol");
+            result.list().forEach(r -> users.add(new Usuario(r.get(0).asString(), r.get(1).asString(), "Desarrollador")));
+        }
+    }
 
     ArrayList<Desarrollador> devsSeleccionados = new ArrayList();
 
@@ -3745,6 +3741,7 @@ public class Interfaz extends javax.swing.JFrame {
     }
     ArrayList<Desarrollador> devss = new ArrayList();
     ArrayList<Proyecto> proyectos = new ArrayList();
+    ArrayList<Usuario> users = new ArrayList();
     ArrayList<Desarrollador> devs = new ArrayList();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog QAtodosLosBugs;
@@ -3790,7 +3787,6 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JButton jButton35;
     private javax.swing.JButton jButton36;
     private javax.swing.JButton jButton37;
-    private javax.swing.JButton jButton38;
     private javax.swing.JButton jButton39;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton40;
