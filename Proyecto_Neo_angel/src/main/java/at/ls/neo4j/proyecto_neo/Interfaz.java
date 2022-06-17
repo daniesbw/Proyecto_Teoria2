@@ -17,8 +17,12 @@ import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -32,6 +36,10 @@ import org.neo4j.driver.GraphDatabase;
 import org.neo4j.driver.Result;
 import org.neo4j.driver.Session;
 import static org.neo4j.driver.Values.parameters;
+//import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 
 public class Interfaz extends javax.swing.JFrame {
 
@@ -249,6 +257,16 @@ public class Interfaz extends javax.swing.JFrame {
         jScrollPane23 = new javax.swing.JScrollPane();
         jTable17 = new javax.swing.JTable();
         jButton42 = new javax.swing.JButton();
+        mandarCorreo = new javax.swing.JDialog();
+        jLabel58 = new javax.swing.JLabel();
+        jLabel59 = new javax.swing.JLabel();
+        jTextField21 = new javax.swing.JTextField();
+        jLabel60 = new javax.swing.JLabel();
+        jTextField22 = new javax.swing.JTextField();
+        jLabel61 = new javax.swing.JLabel();
+        jScrollPane24 = new javax.swing.JScrollPane();
+        jTextArea4 = new javax.swing.JTextArea();
+        jButton44 = new javax.swing.JButton();
         jButton37 = new javax.swing.JButton();
         jComboBox9 = new javax.swing.JComboBox<>();
         jPasswordField2 = new javax.swing.JPasswordField();
@@ -1413,6 +1431,10 @@ public class Interfaz extends javax.swing.JFrame {
         assignBugToDev.getContentPane().setLayout(assignBugToDevLayout);
         assignBugToDevLayout.setHorizontalGroup(
             assignBugToDevLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, assignBugToDevLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel13)
+                .addGap(270, 270, 270))
             .addGroup(assignBugToDevLayout.createSequentialGroup()
                 .addGroup(assignBugToDevLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(assignBugToDevLayout.createSequentialGroup()
@@ -1438,10 +1460,6 @@ public class Interfaz extends javax.swing.JFrame {
                     .addComponent(jLabel18)
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, assignBugToDevLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel13)
-                .addGap(270, 270, 270))
         );
         assignBugToDevLayout.setVerticalGroup(
             assignBugToDevLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1462,8 +1480,8 @@ public class Interfaz extends javax.swing.JFrame {
                 .addGroup(assignBugToDevLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel17)
-                    .addComponent(jButton19)
-                    .addComponent(jLabel12))
+                    .addComponent(jLabel12)
+                    .addComponent(jButton19))
                 .addContainerGap(122, Short.MAX_VALUE))
         );
 
@@ -2178,6 +2196,73 @@ public class Interfaz extends javax.swing.JFrame {
                         .addGap(36, 36, 36))))
         );
 
+        jLabel58.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel58.setText("Enviar correo al desarrollador");
+
+        jLabel59.setText("Asunto");
+
+        jLabel60.setText("Destinatario");
+
+        jTextField22.setEditable(false);
+
+        jLabel61.setText("Mensaje");
+
+        jTextArea4.setColumns(20);
+        jTextArea4.setRows(5);
+        jScrollPane24.setViewportView(jTextArea4);
+
+        jButton44.setText("Enviar");
+        jButton44.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton44MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout mandarCorreoLayout = new javax.swing.GroupLayout(mandarCorreo.getContentPane());
+        mandarCorreo.getContentPane().setLayout(mandarCorreoLayout);
+        mandarCorreoLayout.setHorizontalGroup(
+            mandarCorreoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mandarCorreoLayout.createSequentialGroup()
+                .addGroup(mandarCorreoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(mandarCorreoLayout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(mandarCorreoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane24, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel61)
+                            .addComponent(jLabel60)
+                            .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel59)))
+                    .addGroup(mandarCorreoLayout.createSequentialGroup()
+                        .addGap(171, 171, 171)
+                        .addComponent(jButton44, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(mandarCorreoLayout.createSequentialGroup()
+                        .addGap(126, 126, 126)
+                        .addComponent(jLabel58)))
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+        mandarCorreoLayout.setVerticalGroup(
+            mandarCorreoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mandarCorreoLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel58)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel59)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel60)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel61)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane24, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton44, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                .addGap(12, 12, 12))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
@@ -2889,6 +2974,7 @@ public class Interfaz extends javax.swing.JFrame {
                     //System.out.println(result.consume().counters().systemUpdates());
 
                     JOptionPane.showMessageDialog(null, "Se asignó bug al desarrollador");
+                    setearCorreoDestino();
                     jTable3.clearSelection();
                     jComboBox3.removeAllItems();
                     jTextArea2.setText("");
@@ -2897,14 +2983,26 @@ public class Interfaz extends javax.swing.JFrame {
                     jTable4.setModel(model);
                 }
                 //fin validación
-
             }
         } else {
             JOptionPane.showMessageDialog(null, "Error al asignar bug al desarrollador, debe seleccionar todos los elementos");
         }
-
+        
     }//GEN-LAST:event_jButton19MouseClicked
-
+    
+    public void setearCorreoDestino(){
+        try ( Session session = driver.session()) {
+            Result result = session.run("match (u:Usuario)-[:INFO]-(d:Dev) where d.codigo="
+                    +(int) jTable4.getValueAt(jTable4.getSelectedRow(), 0)+" return u.login");
+            ArrayList<String> x = new ArrayList();
+            result.list().forEach(r -> x.add(r.get(0).asString()));
+            EnviarCorreo ec = new EnviarCorreo(x.get(0));
+            
+            ec.setVisible(true);
+            
+        }
+    }
+    
     private void jComboBox3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox3MouseClicked
 
     }//GEN-LAST:event_jComboBox3MouseClicked
@@ -3576,6 +3674,42 @@ public class Interfaz extends javax.swing.JFrame {
         jTextField20.setText("");
     }//GEN-LAST:event_jButton41ActionPerformed
 
+    private void jButton44MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton44MouseClicked
+        /*Properties propiedad = new Properties();
+        propiedad.setProperty("mail.smtp.host", "smtp.gmail.com");
+        propiedad.setProperty("mail.smtp.starttls.enable", "true");
+        propiedad.setProperty("mail.smtp.port", "587");
+        propiedad.setProperty("mail.smtp.auth", "true");
+        
+        Session sesion = Session.getDefaultInstance(propiedad);
+        
+        String correoEnvia="";
+        String contra="";
+        String destinatario = jTextField22.getText();
+        String asunto = jTextField21.getText();
+        String mensaje = jTextArea4.getText();
+        
+        MimeMessage mail = new MimeMessage(sesion);
+        
+        try {
+            mail.setFrom(new InternetAddress (correoEnvia));
+            mail.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));
+            mail.setSubject(asunto);
+            mail.setText(mensaje);
+            
+            Transport transporte = sesion.getTransport("smtp");
+            transporte.connect(correoEnvia,contra);
+            transporte.sendMessage(mail, mail.getRecipients(Message.RecipientType.TO));
+            transporte.close();
+            
+            JOptionPane.showMessageDialog(null, "Correo enviado");
+            
+        } catch (MessagingException ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        */
+    }//GEN-LAST:event_jButton44MouseClicked
+
     ArrayList<Desarrollador> devsSeleccionados = new ArrayList();
 
     public static void main(String args[]) {
@@ -3662,6 +3796,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JButton jButton40;
     private javax.swing.JButton jButton41;
     private javax.swing.JButton jButton42;
+    private javax.swing.JButton jButton44;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
@@ -3731,7 +3866,11 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel57;
+    private javax.swing.JLabel jLabel58;
+    private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel60;
+    private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -3761,6 +3900,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane21;
     private javax.swing.JScrollPane jScrollPane22;
     private javax.swing.JScrollPane jScrollPane23;
+    private javax.swing.JScrollPane jScrollPane24;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -3790,6 +3930,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea3;
+    private javax.swing.JTextArea jTextArea4;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
@@ -3803,6 +3944,8 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField19;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField20;
+    private javax.swing.JTextField jTextField21;
+    private javax.swing.JTextField jTextField22;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
@@ -3814,6 +3957,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JTextPane jTextPane2;
     private javax.swing.JTextPane jTextPane3;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JDialog mandarCorreo;
     private javax.swing.JDialog menuAdmin;
     private javax.swing.JDialog menuDev;
     private javax.swing.JDialog menuDevBugs;
