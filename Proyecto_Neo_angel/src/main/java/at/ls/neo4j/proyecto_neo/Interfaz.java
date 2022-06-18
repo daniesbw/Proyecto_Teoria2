@@ -2407,10 +2407,16 @@ public class Interfaz extends javax.swing.JFrame {
             //Bugs finalizados
             result = session.run("match (b:Bug) where b.estado='finalizado' return count(b)");
             result.list().forEach(r -> cantidad.add(r.get(0).asInt()));
+            
+            //Bugs en desarrollo
+            result = session.run("match (b:Bug) where b.estado='en desarrollo' return count(b)");
+            result.list().forEach(r -> cantidad.add(r.get(0).asInt()));
 
             datos.setValue("Bugs Nuevos", cantidad.get(0));
             datos.setValue("Bugs Asignados", cantidad.get(1));
             datos.setValue("Bugs Finalizados", cantidad.get(2));
+            datos.setValue("Bugs en Desarrollo", cantidad.get(3));
+            
 
             JFreeChart grafico_circular = ChartFactory.createPieChart(
                     "Estado Actual de los Bugs",
@@ -3021,8 +3027,8 @@ public class Interfaz extends javax.swing.JFrame {
                 ArrayList<String> estado = new ArrayList();
                 result.list().forEach(r -> estado.add(r.get(0).asString()));
 
-                if (estado.get(0).equals("asignado")) {
-                    JOptionPane.showMessageDialog(null, "Ese bug ya está asignado a un desarrollador");
+                if (estado.get(0).equals("asignado") || estado.get(0).equals("en desarrollo")) {
+                    JOptionPane.showMessageDialog(null, "Ese bug ya está asignado a un desarrollador, o ya está en desarrollo");
                 } else {
                     result = session.run("MATCH (d:Dev{codigo:$codigo}),(b:Bug{codigo:$codigo1})"
                             + "CREATE (d)-[:REPARA]->(b)",
