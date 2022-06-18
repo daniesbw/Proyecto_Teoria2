@@ -48,7 +48,7 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" + "login=" + login + ", pass=" + pass + ", rol=" + rol + '}';
+        return this.login+" ["+this.rol+"]";
     }
     
 }

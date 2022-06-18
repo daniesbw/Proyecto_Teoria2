@@ -16,6 +16,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -69,6 +70,7 @@ public class Interfaz extends javax.swing.JFrame {
         jButton31 = new javax.swing.JButton();
         jLabel50 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jButton43 = new javax.swing.JButton();
         menuDev = new javax.swing.JDialog();
         jLabel2 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
@@ -202,6 +204,7 @@ public class Interfaz extends javax.swing.JFrame {
         jButton33 = new javax.swing.JButton();
         jLabel51 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
+        jButton45 = new javax.swing.JButton();
         QAtodosLosBugs = new javax.swing.JDialog();
         jScrollPane8 = new javax.swing.JScrollPane();
         jTable5 = new javax.swing.JTable();
@@ -226,13 +229,6 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel43 = new javax.swing.JLabel();
         jComboBox8 = new javax.swing.JComboBox<>();
         jButton32 = new javax.swing.JButton();
-        comentariosBug = new javax.swing.JDialog();
-        jTextField12 = new javax.swing.JTextField();
-        jButton36 = new javax.swing.JButton();
-        jScrollPane21 = new javax.swing.JScrollPane();
-        jTextPane3 = new javax.swing.JTextPane();
-        jLabel44 = new javax.swing.JLabel();
-        jLabel45 = new javax.swing.JLabel();
         calendario = new javax.swing.JDialog();
         jButton39 = new javax.swing.JButton();
         bugStatsQA = new javax.swing.JDialog();
@@ -268,6 +264,12 @@ public class Interfaz extends javax.swing.JFrame {
         jScrollPane24 = new javax.swing.JScrollPane();
         jTextArea4 = new javax.swing.JTextArea();
         jButton44 = new javax.swing.JButton();
+        comentarBugs = new javax.swing.JDialog();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane26 = new javax.swing.JScrollPane();
+        jTable19 = new javax.swing.JTable();
+        jToggleButton1 = new javax.swing.JToggleButton();
+        jToggleButton2 = new javax.swing.JToggleButton();
         jButton37 = new javax.swing.JButton();
         jComboBox9 = new javax.swing.JComboBox<>();
         jPasswordField2 = new javax.swing.JPasswordField();
@@ -306,6 +308,7 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
+        jButton10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton10.setText("Asignar bugs a Devs");
         jButton10.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -337,6 +340,14 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
+        jButton43.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton43.setText("Comentar Bug");
+        jButton43.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton43MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout menuAdminLayout = new javax.swing.GroupLayout(menuAdmin.getContentPane());
         menuAdmin.getContentPane().setLayout(menuAdminLayout);
         menuAdminLayout.setHorizontalGroup(
@@ -345,26 +356,30 @@ public class Interfaz extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(menuAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuAdminLayout.createSequentialGroup()
-                        .addGroup(menuAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(menuAdminLayout.createSequentialGroup()
-                                .addGap(71, 71, 71)
-                                .addComponent(jLabel5))
-                            .addGroup(menuAdminLayout.createSequentialGroup()
-                                .addGroup(menuAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton7))
-                                .addGap(35, 35, 35)
-                                .addGroup(menuAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton31, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)))
+                        .addGap(71, 71, 71)
+                        .addComponent(jLabel5)
                         .addGap(19, 19, 19))
                     .addGroup(menuAdminLayout.createSequentialGroup()
                         .addComponent(jLabel50)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1)
-                        .addGap(43, 43, 43))))
+                        .addGap(43, 43, 43))
+                    .addGroup(menuAdminLayout.createSequentialGroup()
+                        .addGroup(menuAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton7))
+                        .addGap(35, 35, 35)
+                        .addGroup(menuAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(menuAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(menuAdminLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton31, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE))
+                            .addGroup(menuAdminLayout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addComponent(jButton43, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(19, 19, 19))))
         );
         menuAdminLayout.setVerticalGroup(
             menuAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -375,19 +390,16 @@ public class Interfaz extends javax.swing.JFrame {
                     .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(jLabel5)
-                .addGroup(menuAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(menuAdminLayout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addGroup(menuAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(43, 43, 43)
-                        .addGroup(menuAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(menuAdminLayout.createSequentialGroup()
-                        .addGap(93, 93, 93)
-                        .addComponent(jButton31, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(46, 46, 46)
+                .addGroup(menuAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton31, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43)
+                .addGroup(menuAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton43, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31))
         );
 
@@ -1454,24 +1466,23 @@ public class Interfaz extends javax.swing.JFrame {
                 .addComponent(jLabel13)
                 .addGap(270, 270, 270))
             .addGroup(assignBugToDevLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
                 .addGroup(assignBugToDevLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(assignBugToDevLayout.createSequentialGroup()
-                        .addGap(17, 17, 17)
                         .addGroup(assignBugToDevLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel15))
                         .addGap(29, 29, 29))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, assignBugToDevLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(assignBugToDevLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel16)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(assignBugToDevLayout.createSequentialGroup()
                         .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(assignBugToDevLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton19)
@@ -1612,6 +1623,14 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
+        jButton45.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton45.setText("Comentar Bug");
+        jButton45.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton45MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout menuQALayout = new javax.swing.GroupLayout(menuQA.getContentPane());
         menuQA.getContentPane().setLayout(menuQALayout);
         menuQALayout.setHorizontalGroup(
@@ -1631,26 +1650,31 @@ public class Interfaz extends javax.swing.JFrame {
                         .addComponent(jLabel19)
                         .addGap(355, 355, 355))
                     .addGroup(menuQALayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(menuQALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(menuQALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(menuQALayout.createSequentialGroup()
-                                .addGap(295, 295, 295)
-                                .addGroup(menuQALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel21)
-                                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jLabel20)
-                            .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(menuQALayout.createSequentialGroup()
-                                .addGroup(menuQALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jButton20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
                                 .addGroup(menuQALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(menuQALayout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jButton33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuQALayout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jButton5)))))
+                                        .addGap(295, 295, 295)
+                                        .addGroup(menuQALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel21)
+                                            .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabel20)
+                                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(menuQALayout.createSequentialGroup()
+                                        .addGroup(menuQALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jButton20)
+                                            .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(menuQALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(menuQALayout.createSequentialGroup()
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jButton33, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuQALayout.createSequentialGroup()
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jButton5))))))
+                            .addGroup(menuQALayout.createSequentialGroup()
+                                .addGap(96, 96, 96)
+                                .addComponent(jButton45, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         menuQALayout.setVerticalGroup(
@@ -1665,8 +1689,7 @@ public class Interfaz extends javax.swing.JFrame {
                 .addGroup(menuQALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(menuQALayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane20, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addGap(39, 39, 39))
+                        .addComponent(jScrollPane20, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addGroup(menuQALayout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addComponent(jLabel21)
@@ -1684,7 +1707,9 @@ public class Interfaz extends javax.swing.JFrame {
                         .addGroup(menuQALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton20, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
                             .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(56, 56, 56))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton45, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(16, 16, 16))
         );
 
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
@@ -1904,57 +1929,6 @@ public class Interfaz extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addComponent(jButton32, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(54, Short.MAX_VALUE))
-        );
-
-        jTextField12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-
-        jButton36.setText("X");
-
-        jTextPane3.setEditable(false);
-        jScrollPane21.setViewportView(jTextPane3);
-
-        jLabel44.setText("Usuario Actual:");
-
-        jLabel45.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel45.setText("jLabel45");
-
-        javax.swing.GroupLayout comentariosBugLayout = new javax.swing.GroupLayout(comentariosBug.getContentPane());
-        comentariosBug.getContentPane().setLayout(comentariosBugLayout);
-        comentariosBugLayout.setHorizontalGroup(
-            comentariosBugLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(comentariosBugLayout.createSequentialGroup()
-                .addGap(67, 67, 67)
-                .addGroup(comentariosBugLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(comentariosBugLayout.createSequentialGroup()
-                        .addComponent(jLabel44)
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(comentariosBugLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane21)
-                        .addGroup(comentariosBugLayout.createSequentialGroup()
-                            .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButton36, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(43, Short.MAX_VALUE))
-        );
-        comentariosBugLayout.setVerticalGroup(
-            comentariosBugLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, comentariosBugLayout.createSequentialGroup()
-                .addGroup(comentariosBugLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(comentariosBugLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel44)
-                        .addGap(28, 28, 28))
-                    .addGroup(comentariosBugLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)))
-                .addComponent(jScrollPane21, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(comentariosBugLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jButton36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField12, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE))
-                .addGap(32, 32, 32))
         );
 
         jButton39.setText("volver");
@@ -2281,6 +2255,83 @@ public class Interfaz extends javax.swing.JFrame {
                 .addGap(12, 12, 12))
         );
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel3.setText("Seleccione un bug");
+
+        jTable19.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Codigo del Bug", "Codigo del Proyecto", "Nombre del proyecto"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane26.setViewportView(jTable19);
+
+        jToggleButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jToggleButton1.setText("Comentar Bug");
+        jToggleButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jToggleButton1MouseClicked(evt);
+            }
+        });
+
+        jToggleButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jToggleButton2.setText("Ver comentarios");
+        jToggleButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jToggleButton2MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout comentarBugsLayout = new javax.swing.GroupLayout(comentarBugs.getContentPane());
+        comentarBugs.getContentPane().setLayout(comentarBugsLayout);
+        comentarBugsLayout.setHorizontalGroup(
+            comentarBugsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(comentarBugsLayout.createSequentialGroup()
+                .addGroup(comentarBugsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(comentarBugsLayout.createSequentialGroup()
+                        .addGap(164, 164, 164)
+                        .addComponent(jLabel3))
+                    .addGroup(comentarBugsLayout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addGroup(comentarBugsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(comentarBugsLayout.createSequentialGroup()
+                                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane26, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(49, Short.MAX_VALUE))
+        );
+        comentarBugsLayout.setVerticalGroup(
+            comentarBugsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(comentarBugsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane26, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(comentarBugsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(45, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
@@ -2407,7 +2458,7 @@ public class Interfaz extends javax.swing.JFrame {
             //Bugs finalizados
             result = session.run("match (b:Bug) where b.estado='finalizado' return count(b)");
             result.list().forEach(r -> cantidad.add(r.get(0).asInt()));
-            
+
             //Bugs en desarrollo
             result = session.run("match (b:Bug) where b.estado='en desarrollo' return count(b)");
             result.list().forEach(r -> cantidad.add(r.get(0).asInt()));
@@ -2416,7 +2467,6 @@ public class Interfaz extends javax.swing.JFrame {
             datos.setValue("Bugs Asignados", cantidad.get(1));
             datos.setValue("Bugs Finalizados", cantidad.get(2));
             datos.setValue("Bugs en Desarrollo", cantidad.get(3));
-            
 
             JFreeChart grafico_circular = ChartFactory.createPieChart(
                     "Estado Actual de los Bugs",
@@ -3089,8 +3139,7 @@ public class Interfaz extends javax.swing.JFrame {
 
         if (!jTextField1.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Ese bug ya está en desarrollo");
-        } 
-        else {
+        } else {
             if (jTable2.getSelectedRow() >= 0) {
                 try ( Session session = driver.session()) {
 
@@ -3104,8 +3153,7 @@ public class Interfaz extends javax.swing.JFrame {
 
                     JOptionPane.showMessageDialog(menuDevBugs, "Se ha dado inicio al desarrallo del bug");
                 }
-            }
-            else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Escoja un bug de la tabla para comenzar con su desarrollo");
             }
 
@@ -3316,23 +3364,23 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton35MouseClicked
 
     private void jTable5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable5MouseClicked
-        if (jTable5.getSelectedRow() != -1) {
-            comentariosBug.pack();
-            comentariosBug.setLocationRelativeTo(this);
-            comentariosBug.setVisible(true);
-            QAtodosLosBugs.setVisible(false);
-            jTextField12.setEnabled(false);
-            jButton36.setEnabled(false);
-        }
+//        if (jTable5.getSelectedRow() != -1) {
+//            comentariosBug.pack();
+//            comentariosBug.setLocationRelativeTo(this);
+//            comentariosBug.setVisible(true);
+//            QAtodosLosBugs.setVisible(false);
+//            jTextField12.setEnabled(false);
+//            jButton36.setEnabled(false);
+//        }
     }//GEN-LAST:event_jTable5MouseClicked
 
     private void jButton35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton35ActionPerformed
-        if (jTable2.getSelectedRow() != 1) {
-            comentariosBug.pack();
-            comentariosBug.setLocationRelativeTo(this);
-            comentariosBug.setVisible(true);
-            menuDevBugs.setVisible(false);
-        }
+//        if (jTable2.getSelectedRow() != 1) {
+//            comentariosBug.pack();
+//            comentariosBug.setLocationRelativeTo(this);
+//            comentariosBug.setVisible(true);
+//            menuDevBugs.setVisible(false);
+//        }
     }//GEN-LAST:event_jButton35ActionPerformed
 
     private void jButton34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton34ActionPerformed
@@ -3368,7 +3416,7 @@ public class Interfaz extends javax.swing.JFrame {
                     creacionDev.pack();
                     creacionDev.setLocationRelativeTo(this);
                     creacionDev.setVisible(true);
-                    creacionDev.setModal(true);
+                    
 
                 } else {
                     JOptionPane.showMessageDialog(creacionUsuarios, "Se creo que el usuario perfectamente");
@@ -3405,11 +3453,11 @@ public class Interfaz extends javax.swing.JFrame {
             for (Usuario u : users) {
                 if (u.getLogin().equals(jTextField13.getText()) && u.getPass().equals(sb.toString())
                         && u.getRol().equals(jComboBox9.getItemAt(jComboBox9.getSelectedIndex()))) {
-                    jTextField13.setText("");
-                    jPasswordField2.setText("");
 
                     JOptionPane.showMessageDialog(this, "Login Correctamente!");
                     login = true;
+
+                    userActual = new Usuario(jTextField13.getText(), Arrays.toString(jPasswordField2.getPassword()), jComboBox9.getItemAt(jComboBox9.getSelectedIndex()));
                     //Abrir el rol indicado 
                     if (jComboBox9.getItemAt(jComboBox9.getSelectedIndex()).equals("Administrador")) {
                         jLabel50.setText(u.getLogin());
@@ -3432,6 +3480,9 @@ public class Interfaz extends javax.swing.JFrame {
                         menuQA.setVisible(true);
                         this.setVisible(false);
                     }
+
+                    jTextField13.setText("");
+                    jPasswordField2.setText("");
 
                 }
             }
@@ -3791,6 +3842,75 @@ public class Interfaz extends javax.swing.JFrame {
         devsSeleccionados.add(de);
         model.addRow(new Object[]{de.getCodigo(), de.getNombre()});
     }//GEN-LAST:event_jButton38ActionPerformed
+
+    private void jToggleButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseClicked
+        DefaultTableModel model = (DefaultTableModel) jTable19.getModel();
+
+        if (jTable19.getSelectedRow() != -1) {
+            String texto = JOptionPane.showInputDialog("Ingrese el mensaje");
+            try ( Session session = driver.session()) {
+                Result result = session.run("Match (b:Bug{codigo:" + (model.getValueAt(jTable19.getSelectedRow(), 0)).toString() + ",codigoproyecto:" + (model.getValueAt(jTable19.getSelectedRow(), 1)).toString() + "})"
+                        + "Create (m:Mensaje{Texto:'" + texto + "', Usuario: '" + userActual.toString() + "'})<-[:TIENE_MENSAJE]-(b)");
+
+                JOptionPane.showMessageDialog(comentarBugs, "Se mando el mensaje");
+
+            }
+        } else {
+            JOptionPane.showMessageDialog(comentarBugs, "Seleccione un bug");
+        }
+
+
+    }//GEN-LAST:event_jToggleButton1MouseClicked
+
+    private void jButton43MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton43MouseClicked
+        comentarBugs.pack();
+        comentarBugs.setLocationRelativeTo(this);
+        comentarBugs.setVisible(true);
+        
+        try ( Session session = driver.session()) {
+            DefaultTableModel model = (DefaultTableModel) jTable19.getModel();
+            Result result = session.run("Match (b:Bug) return b.codigo, b.codigoproyecto, b.descripcion");
+
+            result.list().forEach(r -> model.addRow(new Object[]{r.get(0).asInt(), r.get(1).asInt(), r.get(2).asString()}));
+            jTable19.setModel(model);
+        }
+    }//GEN-LAST:event_jButton43MouseClicked
+
+    private void jButton45MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton45MouseClicked
+        comentarBugs.pack();
+        comentarBugs.setLocationRelativeTo(this);
+        comentarBugs.setVisible(true);
+        
+        try ( Session session = driver.session()) {
+            DefaultTableModel model = (DefaultTableModel) jTable19.getModel();
+            Result result = session.run("Match (b:Bug) return b.codigo, b.codigoproyecto, b.descripcion");
+
+            result.list().forEach(r -> model.addRow(new Object[]{r.get(0).asInt(), r.get(1).asInt(), r.get(2).asString()}));
+            jTable19.setModel(model);
+        }
+    }//GEN-LAST:event_jButton45MouseClicked
+
+    private void jToggleButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton2MouseClicked
+        
+        DefaultTableModel model = (DefaultTableModel) jTable19.getModel();
+        if (jTable19.getSelectedRow() != -1) {
+            try ( Session session = driver.session()) {
+                ArrayList<String> mensajes = new ArrayList();
+               
+                Result result = session.run("Match (b:Bug{codigo: "+(jTable19.getValueAt(jTable19.getSelectedRow(), 0)).toString() +" , codigoproyecto: "+(jTable19.getValueAt(jTable19.getSelectedRow(), 1)).toString()+"})-[:TIENE_MENSAJE]->(m:Mensaje) return m.Usuario, m.Texto");
+
+                result.list().forEach(r -> mensajes.add(r.get(0).asString()+": "+r.get(1).asString()));
+                
+                String mensajes1 = "";
+                for (String t : mensajes) {
+                    mensajes1 += t+"\n";
+                }
+                
+                JOptionPane.showMessageDialog(comentarBugs, mensajes1);
+            }
+        }
+
+    }//GEN-LAST:event_jToggleButton2MouseClicked
     public void cargarUsuarios() {
         try ( Session session = driver.session()) {
             Result result = session.run("match (u:Usuario{rol:'Desarrollador'}) where not (u)-[:INFO]-(:Dev) return u.login, u.password, u.rol");
@@ -3831,6 +3951,7 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
     }
+    Usuario userActual = new Usuario();
     ArrayList<Desarrollador> devss = new ArrayList();
     ArrayList<Proyecto> proyectos = new ArrayList();
     ArrayList<Usuario> users = new ArrayList();
@@ -3841,7 +3962,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JDialog assignBugToDev;
     private javax.swing.JDialog bugStatsQA;
     private javax.swing.JDialog calendario;
-    private javax.swing.JDialog comentariosBug;
+    private javax.swing.JDialog comentarBugs;
     private javax.swing.JDialog creacionDev;
     private javax.swing.JDialog creacionUsuarios;
     private javax.swing.JDialog crudDev;
@@ -3877,7 +3998,6 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JButton jButton33;
     private javax.swing.JButton jButton34;
     private javax.swing.JButton jButton35;
-    private javax.swing.JButton jButton36;
     private javax.swing.JButton jButton37;
     private javax.swing.JButton jButton38;
     private javax.swing.JButton jButton39;
@@ -3885,7 +4005,9 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JButton jButton40;
     private javax.swing.JButton jButton41;
     private javax.swing.JButton jButton42;
+    private javax.swing.JButton jButton43;
     private javax.swing.JButton jButton44;
+    private javax.swing.JButton jButton45;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
@@ -3924,6 +4046,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
@@ -3939,8 +4062,6 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
-    private javax.swing.JLabel jLabel44;
-    private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
@@ -3985,11 +4106,11 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane19;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane20;
-    private javax.swing.JScrollPane jScrollPane21;
     private javax.swing.JScrollPane jScrollPane22;
     private javax.swing.JScrollPane jScrollPane23;
     private javax.swing.JScrollPane jScrollPane24;
     private javax.swing.JScrollPane jScrollPane25;
+    private javax.swing.JScrollPane jScrollPane26;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -4009,6 +4130,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JTable jTable16;
     private javax.swing.JTable jTable17;
     private javax.swing.JTable jTable18;
+    private javax.swing.JTable jTable19;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
@@ -4024,7 +4146,6 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField15;
@@ -4045,7 +4166,8 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField9;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JTextPane jTextPane2;
-    private javax.swing.JTextPane jTextPane3;
+    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JDialog mandarCorreo;
     private javax.swing.JDialog menuAdmin;
     private javax.swing.JDialog menuDev;
