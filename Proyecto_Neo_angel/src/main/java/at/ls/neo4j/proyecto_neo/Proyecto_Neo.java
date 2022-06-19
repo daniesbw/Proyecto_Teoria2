@@ -18,14 +18,22 @@ public class Proyecto_Neo {
     
     public static void main(String[] args) {
         
-        int codigo=5;
+        String x = "Frameworks ,Manejo de blockchain ,Machine learning ";
+        String array[] = x.split(",");
+        String concat="";
+        for(int i=0; i<array.length; i++){
+            concat+=array[i]+"\n";
+        }
+        System.out.println(concat);
+         
+        /*int codigo=5;
         String x = "Este es el código "+codigo+" que nos asignaron";
         System.out.println(x);
         
         Date myDate = new Date();
 
         String t = new SimpleDateFormat("dd-MM-yyyy").format(myDate);
-        System.out.println(t);
+        System.out.println(t);*/
 
         
         
