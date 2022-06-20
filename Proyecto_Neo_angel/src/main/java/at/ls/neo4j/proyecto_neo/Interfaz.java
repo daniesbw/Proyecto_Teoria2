@@ -6,12 +6,14 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
+import com.mindfusion.common.*;
+import com.mindfusion.scheduling.*;
+
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Panel;
-import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.MessageDigest;
@@ -20,14 +22,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -39,10 +38,6 @@ import org.neo4j.driver.GraphDatabase;
 import org.neo4j.driver.Result;
 import org.neo4j.driver.Session;
 import static org.neo4j.driver.Values.parameters;
-//import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
 
 public class Interfaz extends javax.swing.JFrame {
 
@@ -59,6 +54,7 @@ public class Interfaz extends javax.swing.JFrame {
         bugStatsQA.setUndecorated(true);
         jComboBox2.setVisible(false);
         jTable7.setVisible(false);
+
     }
 
     @SuppressWarnings("unchecked")
@@ -100,7 +96,6 @@ public class Interfaz extends javax.swing.JFrame {
         jButton14 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        jButton35 = new javax.swing.JButton();
         estadisticasBugs = new javax.swing.JDialog();
         jLabel6 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
@@ -248,7 +243,6 @@ public class Interfaz extends javax.swing.JFrame {
         jComboBox8 = new javax.swing.JComboBox<>();
         jButton32 = new javax.swing.JButton();
         calendario = new javax.swing.JDialog();
-        jButton39 = new javax.swing.JButton();
         bugStatsQA = new javax.swing.JDialog();
         jLabel52 = new javax.swing.JLabel();
         jLabel53 = new javax.swing.JLabel();
@@ -289,6 +283,7 @@ public class Interfaz extends javax.swing.JFrame {
         jToggleButton1 = new javax.swing.JToggleButton();
         jToggleButton2 = new javax.swing.JToggleButton();
         jButton36 = new javax.swing.JButton();
+        aaa = new javax.swing.JFrame();
         jButton37 = new javax.swing.JButton();
         jComboBox9 = new javax.swing.JComboBox<>();
         jPasswordField2 = new javax.swing.JPasswordField();
@@ -630,18 +625,6 @@ public class Interfaz extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(jTable2);
 
-        jButton35.setText("Comentarios");
-        jButton35.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton35MouseClicked(evt);
-            }
-        });
-        jButton35.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton35ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout menuDevBugsLayout = new javax.swing.GroupLayout(menuDevBugs.getContentPane());
         menuDevBugs.getContentPane().setLayout(menuDevBugsLayout);
         menuDevBugsLayout.setHorizontalGroup(
@@ -663,10 +646,7 @@ public class Interfaz extends javax.swing.JFrame {
                 .addGroup(menuDevBugsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
-                    .addGroup(menuDevBugsLayout.createSequentialGroup()
-                        .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton35, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(60, 60, 60))
         );
         menuDevBugsLayout.setVerticalGroup(
@@ -685,8 +665,7 @@ public class Interfaz extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(menuDevBugsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton35, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -1477,10 +1456,11 @@ public class Interfaz extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel45)
-                    .addComponent(jLabel62, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel62, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel45)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel7Layout.createSequentialGroup()
@@ -1998,7 +1978,7 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel40.setText("Creación de usuarios");
 
         jLabel41.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel41.setText("Login");
+        jLabel41.setText("Login (Correo)");
 
         jTextField2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
@@ -2062,28 +2042,15 @@ public class Interfaz extends javax.swing.JFrame {
                 .addContainerGap(54, Short.MAX_VALUE))
         );
 
-        jButton39.setText("volver");
-        jButton39.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton39ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout calendarioLayout = new javax.swing.GroupLayout(calendario.getContentPane());
         calendario.getContentPane().setLayout(calendarioLayout);
         calendarioLayout.setHorizontalGroup(
             calendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(calendarioLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jButton39)
-                .addContainerGap(314, Short.MAX_VALUE))
+            .addGap(0, 602, Short.MAX_VALUE)
         );
         calendarioLayout.setVerticalGroup(
             calendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(calendarioLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jButton39)
-                .addContainerGap(264, Short.MAX_VALUE))
+            .addGap(0, 439, Short.MAX_VALUE)
         );
 
         jLabel52.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -2464,6 +2431,17 @@ public class Interfaz extends javax.swing.JFrame {
         );
 
         jButton36.setText("jButton36");
+
+        javax.swing.GroupLayout aaaLayout = new javax.swing.GroupLayout(aaa.getContentPane());
+        aaa.getContentPane().setLayout(aaaLayout);
+        aaaLayout.setHorizontalGroup(
+            aaaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 760, Short.MAX_VALUE)
+        );
+        aaaLayout.setVerticalGroup(
+            aaaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 608, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -2920,7 +2898,7 @@ public class Interfaz extends javax.swing.JFrame {
             }
 
             //Crear el nuevo documento pdf modificado de tecnologías
-            File file = new File("Tecnologias" + Integer.parseInt(jComboBox5.getSelectedItem().toString())+ ".pdf");
+            File file = new File("Tecnologias" + Integer.parseInt(jComboBox5.getSelectedItem().toString()) + ".pdf");
             try ( PdfWriter pdfWriter = new PdfWriter(file)) {
                 PdfDocument pdfDocument = new PdfDocument(pdfWriter);
                 Document document = new Document(pdfDocument);
@@ -3575,10 +3553,6 @@ public class Interfaz extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton31ActionPerformed
 
-    private void jButton35MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton35MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton35MouseClicked
-
     private void jTable5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable5MouseClicked
 //        if (jTable5.getSelectedRow() != -1) {
 //            comentariosBug.pack();
@@ -3590,28 +3564,23 @@ public class Interfaz extends javax.swing.JFrame {
 //        }
     }//GEN-LAST:event_jTable5MouseClicked
 
-    private void jButton35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton35ActionPerformed
-//        if (jTable2.getSelectedRow() != 1) {
-//            comentariosBug.pack();
-//            comentariosBug.setLocationRelativeTo(this);
-//            comentariosBug.setVisible(true);
-//            menuDevBugs.setVisible(false);
-//        }
-    }//GEN-LAST:event_jButton35ActionPerformed
-
     private void jButton34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton34ActionPerformed
-        calendario.pack();
-        calendario.setLocationRelativeTo(this);
-        calendario.setVisible(true);
+
+        ArrayList<Bug> bugsAsignados = new ArrayList();
+        try ( Session session = driver.session()) {
+            Result result = session.run("match (d:Dev)-[:REPARA]-(b:Bug{estado: 'en desarrollo'})  where (:Usuario{login:'" + userActual.getLogin() + "'})-[:INFO]-(d) return b.codigo, b.codigoproyecto, b.descripcion, b.estado, "
+                    + "b.fechaInicio, b.fechaFinalizado, b.nivelUrgencia");
+            result.list().forEach(r -> bugsAsignados.add(new Bug(r.get(0).asInt(), r.get(2).asString(), r.get(1).asInt(),
+                    r.get(6).asInt(), r.get(3).asString(), r.get(4).asString(), r.get(5).asString())));
+        }
+        Calendario calendar1 = new Calendario(bugsAsignados);
+        calendar1.runn(bugsAsignados);
+
         menuDev.setVisible(false);
+
+
     }//GEN-LAST:event_jButton34ActionPerformed
 
-    private void jButton39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton39ActionPerformed
-        menuDev.pack();
-        menuDev.setLocationRelativeTo(this);
-        menuDev.setVisible(true);
-        calendario.setVisible(false);
-    }//GEN-LAST:event_jButton39ActionPerformed
 
     private void jButton32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton32ActionPerformed
         try {
@@ -3626,17 +3595,27 @@ public class Interfaz extends javax.swing.JFrame {
                     sb.append(String.format("%02x", b & 0xff));
                 }
 
-                Result result = session.run("CREATE (u:Usuario{login:$login, password:$password,  rol:$rol})",
-                        parameters("login", jTextField2.getText(), "password", sb.toString(), "rol", jComboBox8.getItemAt(jComboBox8.getSelectedIndex())));
-                if (jComboBox8.getItemAt(jComboBox8.getSelectedIndex()).equals("Desarrollador")) {
-                    creacionDev.pack();
-                    creacionDev.setLocationRelativeTo(this);
-                    creacionDev.setVisible(true);
+                ArrayList<String> logins = new ArrayList();
+                Result result = session.run("match (u:Usuario{login:'" + jTextField2.getText() + "'}) return u.login");
+                result.list().forEach(r -> logins.add((r.get(0).asString())));
+                if (logins.size() == 0) {
+                    result = session.run("CREATE (u:Usuario{login:$login, password:$password,  rol:$rol})",
+                            parameters("login", jTextField2.getText(), "password", sb.toString(), "rol", jComboBox8.getItemAt(jComboBox8.getSelectedIndex())));
+                    if (jComboBox8.getItemAt(jComboBox8.getSelectedIndex()).equals("Desarrollador")) {
+                        creacionDev.pack();
+                        creacionDev.setLocationRelativeTo(this);
+                        creacionDev.setVisible(true);
+
+                    } else {
+                        JOptionPane.showMessageDialog(creacionUsuarios, "Se creo que el usuario perfectamente");
+                        jTextField2.setText("");
+                        jPasswordField1.setText("");
+                    }
 
                 } else {
-                    JOptionPane.showMessageDialog(creacionUsuarios, "Se creo que el usuario perfectamente");
+                    JOptionPane.showMessageDialog(creacionUsuarios, "Ese correo ya esta en uso!\nFavor ingrese otro");
+                    jLabel41.setForeground(Color.red);
                     jTextField2.setText("");
-                    jPasswordField1.setText("");
                 }
 
             }
@@ -4084,7 +4063,7 @@ public class Interfaz extends javax.swing.JFrame {
 
         try ( Session session = driver.session()) {
             DefaultTableModel model = (DefaultTableModel) jTable19.getModel();
-            Result result = session.run("Match (b:Bug) return b.codigo, b.codigoproyecto, b.descripcion");
+            Result result = session.run("Match (b:Bug{estado:'finalizado'}) return b.codigo, b.codigoproyecto, b.descripcion");
 
             result.list().forEach(r -> model.addRow(new Object[]{r.get(0).asInt(), r.get(1).asInt(), r.get(2).asString()}));
             jTable19.setModel(model);
@@ -4098,7 +4077,7 @@ public class Interfaz extends javax.swing.JFrame {
 
         try ( Session session = driver.session()) {
             DefaultTableModel model = (DefaultTableModel) jTable19.getModel();
-            Result result = session.run("Match (b:Bug) return b.codigo, b.codigoproyecto, b.descripcion");
+            Result result = session.run("Match (b:Bug{estado:'finalizado'}) return b.codigo, b.codigoproyecto, b.descripcion");
 
             result.list().forEach(r -> model.addRow(new Object[]{r.get(0).asInt(), r.get(1).asInt(), r.get(2).asString()}));
             jTable19.setModel(model);
@@ -4263,8 +4242,10 @@ public class Interfaz extends javax.swing.JFrame {
     ArrayList<Proyecto> proyectos = new ArrayList();
     ArrayList<Usuario> users = new ArrayList();
     ArrayList<Desarrollador> devs = new ArrayList();
+    private Calendar calendar;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog QAtodosLosBugs;
+    private javax.swing.JFrame aaa;
     private javax.swing.JDialog aniadirDevs;
     private javax.swing.JDialog assignBugToDev;
     private javax.swing.JDialog bugStatsQA;
@@ -4304,11 +4285,9 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JButton jButton32;
     private javax.swing.JButton jButton33;
     private javax.swing.JButton jButton34;
-    private javax.swing.JButton jButton35;
     private javax.swing.JButton jButton36;
     private javax.swing.JButton jButton37;
     private javax.swing.JButton jButton38;
-    private javax.swing.JButton jButton39;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton40;
     private javax.swing.JButton jButton41;
