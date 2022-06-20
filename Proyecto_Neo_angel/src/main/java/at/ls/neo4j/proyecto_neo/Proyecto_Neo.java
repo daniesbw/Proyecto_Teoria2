@@ -17,9 +17,9 @@ public class Proyecto_Neo {
     
     
     public static void main(String[] args) {
-        
-        String x = "Frameworks ,Manejo de blockchain ,Machine learning ";
-        String array[] = x.split(",");
+        //Web;Machete; Frameworks ;Manejo de blockchain ;Machine learning 
+        String x = "Web;Machete";
+        String array[] = x.split(";");
         String concat="";
         for(int i=0; i<array.length; i++){
             concat+=array[i]+"\n";

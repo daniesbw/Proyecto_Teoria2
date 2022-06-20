@@ -184,6 +184,11 @@ public class Interfaz extends javax.swing.JFrame {
         jTextField8 = new javax.swing.JTextField();
         jButton27 = new javax.swing.JButton();
         jButton28 = new javax.swing.JButton();
+        jScrollPane28 = new javax.swing.JScrollPane();
+        jTextArea7 = new javax.swing.JTextArea();
+        jLabel44 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
+        jLabel62 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         assignBugToDev = new javax.swing.JDialog();
         jLabel13 = new javax.swing.JLabel();
@@ -1295,7 +1300,7 @@ public class Interfaz extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton47)
                             .addComponent(jButton48)))
                     .addGroup(jPanel5Layout.createSequentialGroup()
@@ -1346,7 +1351,7 @@ public class Interfaz extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Listar", jPanel6);
@@ -1395,12 +1400,24 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
+        jButton28.setBackground(new java.awt.Color(255, 51, 51));
         jButton28.setText("MODIFICAR");
         jButton28.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton28ActionPerformed(evt);
             }
         });
+
+        jTextArea7.setColumns(20);
+        jTextArea7.setRows(5);
+        jScrollPane28.setViewportView(jTextArea7);
+
+        jLabel44.setText("Modifique las tecnologías que desee");
+
+        jLabel45.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel45.setText("Tecnologías");
+
+        jLabel62.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -1409,25 +1426,40 @@ public class Interfaz extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jTextField7, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE))
-                    .addComponent(jButton26)
-                    .addComponent(jLabel25)
-                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 335, Short.MAX_VALUE)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel27)
-                        .addComponent(jTextField8))
-                    .addComponent(jButton27))
-                .addGap(76, 76, 76))
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(277, 277, 277)
-                .addComponent(jButton28)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton26)
+                            .addComponent(jLabel25)
+                            .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGap(335, 335, 335)
+                                .addComponent(jLabel44))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 366, Short.MAX_VALUE)
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel27))
+                                .addGap(95, 95, 95))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGap(141, 141, 141)
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jButton28)
+                                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jButton27, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                        .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                        .addComponent(jTextField8, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel45)
+                                .addGap(88, 88, 88)
+                                .addComponent(jLabel62, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jTextField7, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane28, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(22, 22, 22))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1440,18 +1472,26 @@ public class Interfaz extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
+                .addComponent(jButton27)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel45)
+                    .addComponent(jLabel62, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane28))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton26)
-                    .addComponent(jButton27))
+                    .addComponent(jLabel44))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton28, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -1480,7 +1520,7 @@ public class Interfaz extends javax.swing.JFrame {
             .addGroup(crudDevLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jLabel14)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -2644,7 +2684,7 @@ public class Interfaz extends javax.swing.JFrame {
         String[] tecnologia = {jTextField6.getText()};
         modelo.addRow(tecnologia);
         jTable7.setModel(modelo);*/
-        jTextArea6.append(jTextField6.getText()+"\n");
+        jTextArea6.append(jTextField6.getText() + "\n");
 
         jTextField6.setText("");
     }//GEN-LAST:event_jButton24MouseClicked
@@ -2665,17 +2705,16 @@ public class Interfaz extends javax.swing.JFrame {
             /*for (int i = 0; i < jTable7.getRowCount(); i++) {
                 tecnologias += ((String) jTable7.getValueAt(i, 0)) + ";";
             }*/
-
             PDFManager pdfManager = new PDFManager();
             pdfManager.setFilePath(path);
-            String concat="";
+            String concat = "";
             try {
                 String text = pdfManager.toText();
                 String array[] = text.split("\\r?\\n");
-                
+
                 for (int i = 0; i < array.length; i++) {
                     if (i != array.length - 1) {
-                        concat += array[i] + ",";
+                        concat += array[i] + ";";
                     } else {
                         concat += array[i];
                     }
@@ -2711,10 +2750,9 @@ public class Interfaz extends javax.swing.JFrame {
                 /*String[] t = {"Tecnologías"};
                 DefaultTableModel modelo2 = new DefaultTableModel(null, t);
                 jTable7.setModel(modelo2);*/
-                
                 jTextArea5.setText("");
                 jTextField12.setText("");
-                
+
                 cargarUsuarios();
                 String salida = "";
                 for (int i = 0; i < users.size(); i++) {
@@ -2760,6 +2798,10 @@ public class Interfaz extends javax.swing.JFrame {
 
             cargarDevs();
         } else if (jTabbedPane2.getSelectedIndex() == 2) {
+            jButton27.setVisible(false);
+            jTable10.setVisible(false);
+            jTextField8.setVisible(false);
+
             cargarDevs();
             jComboBox5.removeAllItems();
             for (int i = 0; i < desarrolladores.size(); i++) {
@@ -2826,12 +2868,30 @@ public class Interfaz extends javax.swing.JFrame {
             model.addRow(new Object[]{de.getLenguajes().get(i)});
         }
 
-        DefaultTableModel model1 = (DefaultTableModel) jTable10.getModel();
+        jLabel62.setText("Tecnologias" + Integer.parseInt(jComboBox5.getSelectedItem().toString()) + ".pdf");
+
+        jTextArea7.setText("");
+        try ( Session session = driver.session()) {
+            ArrayList<String> xx = new ArrayList();
+
+            Result result = session.run("match (d:Dev) where d.codigo=" + Integer.parseInt(jComboBox5.getSelectedItem().toString()) + " return d.tecnologias");
+
+            result.list().forEach(r -> xx.add(r.get(0).asString()));
+
+            String x = xx.get(0);
+            String array[] = x.split(";");
+            String concat = "";
+            for (int i = 0; i < array.length; i++) {
+                concat += array[i] + "\n";
+            }
+            jTextArea7.append(concat);
+        }
+
+        /*DefaultTableModel model1 = (DefaultTableModel) jTable10.getModel();
         model1.setRowCount(0);
         for (int i = 0; i < de.getTecnologias().size(); i++) {
             model1.addRow(new Object[]{de.getTecnologias().get(i)});
-        }
-
+        }*/
 
     }//GEN-LAST:event_jComboBox5ItemStateChanged
 
@@ -2859,19 +2919,51 @@ public class Interfaz extends javax.swing.JFrame {
                 lenguajes += jTable9.getValueAt(i, 0) + ";";
             }
 
-            for (int i = 0; i < jTable10.getRowCount(); i++) {
-                tecnologias += jTable10.getValueAt(i, 0) + ";";
-            }
+            //Crear el nuevo documento pdf modificado de tecnologías
+            File file = new File("Tecnologias" + Integer.parseInt(jComboBox5.getSelectedItem().toString())+ ".pdf");
+            try ( PdfWriter pdfWriter = new PdfWriter(file)) {
+                PdfDocument pdfDocument = new PdfDocument(pdfWriter);
+                Document document = new Document(pdfDocument);
 
+                document.add(new Paragraph(jTextArea7.getText()));
+
+                document.close();
+                pdfDocument.close();
+
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //fin crear nuevo documento
+
+            //Meter tecnologia nueva a la base de datos
+            String text = jTextArea7.getText(), concat = "";
+            String array[] = text.split("\\r?\\n");
+
+            for (int i = 0; i < array.length; i++) {
+                if (i != array.length - 1) {
+                    concat += array[i] + ";";
+                } else {
+                    concat += array[i];
+                }
+            }
+            //fin meter tecnologia nueva a la base de datos
+
+            /*for (int i = 0; i < jTable10.getRowCount(); i++) {
+                tecnologias += jTable10.getValueAt(i, 0) + ";";
+            }*/
             Result result = session.run("Match (d:Dev {codigo:$codigo}) set d.lenguajes=$lenguajes, d.nombre=$nombre, d.tecnologias=$tecnologias return d",
                     parameters("codigo", Integer.parseInt(jComboBox5.getSelectedItem().toString()), "lenguajes", lenguajes, "nombre", jTextField5.getText(),
-                            "tecnologias", tecnologias));
+                            "tecnologias", concat));
 
             result.list().forEach(r -> System.out.println("El nuevo nodo es: " + r.get(0).asNode().values()));
 
             cargarDevs();
 
             jTextField5.setText("");
+            jTextArea7.setText("");
+            jLabel62.setText(" ");
             DefaultTableModel model = (DefaultTableModel) jTable9.getModel();
             model.setRowCount(0);
 
@@ -4079,31 +4171,30 @@ public class Interfaz extends javax.swing.JFrame {
         //Devolver cantidad de devs para obtener el número que irá en Tecnologías# (nombre del PDF)
         ArrayList<Integer> cantidad = new ArrayList();
         try ( Session session = driver.session()) {
-            
+
             Result result = session.run("match (d:Dev) return count (d)");
-            result.list().forEach(r -> cantidad.add(r.get(0).asInt()));  
+            result.list().forEach(r -> cantidad.add(r.get(0).asInt()));
         }
-        
-        File file = new File("Tecnologias" + cantidad.get(0)+1 + ".pdf");
+
+        File file = new File("Tecnologias" + cantidad.get(0) + 1 + ".pdf");
         try ( PdfWriter pdfWriter = new PdfWriter(file)) {
             PdfDocument pdfDocument = new PdfDocument(pdfWriter);
             Document document = new Document(pdfDocument);
 
-            
             document.add(new Paragraph(jTextArea6.getText()));
-            
+
             document.close();
             pdfDocument.close();
             JOptionPane.showMessageDialog(null, "Se subió el archivo correctamente");
             jTextArea6.setText("");
-            
+
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
+
     }//GEN-LAST:event_jButton49MouseClicked
 
     private void leerArchivoPDF() throws FileNotFoundException, IOException {
@@ -4283,6 +4374,8 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
@@ -4301,6 +4394,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel61;
+    private javax.swing.JLabel jLabel62;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -4334,6 +4428,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane25;
     private javax.swing.JScrollPane jScrollPane26;
     private javax.swing.JScrollPane jScrollPane27;
+    private javax.swing.JScrollPane jScrollPane28;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -4368,6 +4463,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea4;
     private javax.swing.JTextArea jTextArea5;
     private javax.swing.JTextArea jTextArea6;
+    private javax.swing.JTextArea jTextArea7;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
