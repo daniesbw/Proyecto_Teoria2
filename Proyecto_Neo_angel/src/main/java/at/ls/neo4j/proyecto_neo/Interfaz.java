@@ -2732,18 +2732,40 @@ public class Interfaz extends javax.swing.JFrame {
                 jTextField12.setText("");
 
                 cargarUsuarios();
-                String salida = "";
-                for (int i = 0; i < users.size(); i++) {
-                    salida += i + "- " + users.get(i).getLogin() + "\n";
+                ArrayList<String> logins = new ArrayList();
+
+                String login = JOptionPane.showInputDialog("Ingrese el login");
+                result = session.run("match (u:Usuario{login:'" + login + "'}) return u.login");
+
+                result.list().forEach(r -> logins.add((r.get(0).asString())));
+                while (logins.size() >= 1) {
+                    logins.clear();
+                    
+                    login = JOptionPane.showInputDialog("Login repetido!!\nIngrese el login");
+                    
+                    result = session.run("match (u:Usuario{login:'" + login + "'}) return u.login");
+
+                    result.list().forEach(r -> logins.add((r.get(0).asString())));
                 }
-
-                int op = Integer.parseInt(JOptionPane.showInputDialog("Seleccione su login: \n" + salida));
-
-                result = session.run("MATCH (u:Usuario{login:'" + users.get(op).getLogin() + "',password:'" + users.get(op).getPass() + "',rol:'" + users.get(op).getRol() + "'}),(d1:Dev{codigo:" + (codigo.get(0) + 1) + "})"
-                        + "CREATE (u)-[:INFO]->(d1)");
+                //Contraseña
+                 MessageDigest md = MessageDigest.getInstance("SHA-256");
+                String contra = JOptionPane.showInputDialog("Ingrese la contraseña");
+                md.update(jPasswordField1.getText().getBytes());
+                byte[] digest = md.digest();
+                StringBuffer sb = new StringBuffer();
+                for (byte b : digest) {
+                    sb.append(String.format("%02x", b & 0xff));
+                }
+                
+                
+                
+                result = session.run("MATCH (d1:Dev{codigo:" + (codigo.get(0) + 1) + "})"
+                        + "CREATE (u:Usuario{login:'"+login+"', password: '"+sb.toString()+"', rol: 'Desarrollador'})-[:INFO]->(d1)");
 
                 JOptionPane.showMessageDialog(null, "Se guardó el desarrollador");
 
+            } catch (NoSuchAlgorithmException ex) {
+                Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
