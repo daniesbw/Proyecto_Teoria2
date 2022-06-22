@@ -3598,7 +3598,7 @@ public class Interfaz extends javax.swing.JFrame {
         Calendario calendar1 = new Calendario(bugsAsignados);
         calendar1.runn(bugsAsignados);
 
-        menuDev.setVisible(false);
+        //menuDev.setVisible(false);
 
 
     }//GEN-LAST:event_jButton34ActionPerformed
@@ -4079,13 +4079,15 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton1MouseClicked
 
     private void jButton43MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton43MouseClicked
+        DefaultTableModel modelo = (DefaultTableModel) jTable19.getModel();
+        modelo.setRowCount(0);
         comentarBugs.pack();
         comentarBugs.setLocationRelativeTo(this);
         comentarBugs.setVisible(true);
 
         try ( Session session = driver.session()) {
             DefaultTableModel model = (DefaultTableModel) jTable19.getModel();
-            Result result = session.run("Match (b:Bug{estado:'finalizado'}) return b.codigo, b.codigoproyecto, b.descripcion");
+            Result result = session.run("Match (b:Bug) where b.estado<>'finalizado' return b.codigo, b.codigoproyecto, b.descripcion ");
 
             result.list().forEach(r -> model.addRow(new Object[]{r.get(0).asInt(), r.get(1).asInt(), r.get(2).asString()}));
             jTable19.setModel(model);
@@ -4093,13 +4095,15 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton43MouseClicked
 
     private void jButton45MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton45MouseClicked
+        DefaultTableModel modelo = (DefaultTableModel) jTable19.getModel();
+        modelo.setRowCount(0);
         comentarBugs.pack();
         comentarBugs.setLocationRelativeTo(this);
         comentarBugs.setVisible(true);
 
         try ( Session session = driver.session()) {
             DefaultTableModel model = (DefaultTableModel) jTable19.getModel();
-            Result result = session.run("Match (b:Bug{estado:'finalizado'}) return b.codigo, b.codigoproyecto, b.descripcion");
+            Result result = session.run("Match (b:Bug) where b.estado<>'finalizado' return b.codigo, b.codigoproyecto, b.descripcion");
 
             result.list().forEach(r -> model.addRow(new Object[]{r.get(0).asInt(), r.get(1).asInt(), r.get(2).asString()}));
             jTable19.setModel(model);

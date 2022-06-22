@@ -48,7 +48,7 @@ public class Calendario extends JFrame {
     }
 
     protected Calendario(ArrayList<Bug> bugs) {
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        //setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(900, 700);
         setTitle("Calendario de errores");
 
